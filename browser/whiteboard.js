@@ -1,5 +1,7 @@
 window.whiteboard = new window.EventEmitter();
 
+window.sphereMove = new window.EventEmitter();
+
 (function () {
 
     // Ultimately, the color of our stroke;
@@ -76,106 +78,45 @@ window.whiteboard = new window.EventEmitter();
 
 
 //ball stuff
-    var x = 1286/2, y = 543/2,
-    vx = 0, vy = 0,
-    ax = 0, ay = 0,
-    xlast = 0, ylast = 0,
-    vxlast = 0, vylast = 0;
-    
+    var x = canvas.width/2, y = canvas.height/2, xlast = x, ylast = y;
     var sphere = document.getElementById("sphere");
+    sphere.style.top = y;
+    sphere.style.left = x;
+
+    var current = {x:canvas.width/2, y:canvas.height/2};
+    var last = {x:canvas.width/2, y:canvas.height/2};
 
     if (window.DeviceMotionEvent !== undefined) {
 
         window.ondeviceorientation = function(e){
-            xlast = x;
-            ylast = y;
-
-
-            y = e.beta * (543) / 90;
-            x = e.gamma * (1286)/180 + (1286 / 2);
-
-            // if(e.alpha < 45){
-            //     x2 = -1 * e.alpha * (1286/2)/45 + 1286/2;
-            // }else if(e.alpha > 315){
-            //     x2 = -14.29 * e.alpha + 18.369;
-            // }
-
-            // x+=x2;
-
-            sphere.style.top = y + "px";
-            sphere.style.left = x + "px";
+            if(e.beta || e.gamma){
+                xlast = x;
+                ylast = y;
+                y = e.beta * (canvas.height) / 90;
+                x = e.gamma * (canvas.width)/180 + (canvas.width / 2);
+            }
         };
 
-        // window.ondevicemotion = function(e) {
-        //     axlast = ax;
-        //     aylast = ay;
-        //     ax = e.acceleration.x*1000;
-        //     ay = e.acceleration.z*1000;
-        //     var interval = e.interval;
-
-        //     vxlast = vx;
-        //     vylast = vy;
-        //     vx = vxlast + ax * interval * Math.pow(10, -3);
-        //     vy = vylast + ay * interval * Math.pow(10, -3);
-
-        //     xlast = x;
-        //     ylast = y;
-
-        //     x = (vxlast + vx) / 2 * interval * Math.pow(10, -3) + xlast;
-        //     y = -1 * (vylast + vy) / 2 * interval * Math.pow(10, -3) + ylast;
-        // };
-
-        // setInterval( function() {
-        //     var landscapeOrientation = window.innerWidth/window.innerHeight > 1;
-        //     if ( landscapeOrientation) {
-        //         vx = vx + ay;
-        //         vy = vy + ax;
-        //     } else {
-        //         vy = vy - ay;
-        //         vx = vx + ax;
-        //     }
-        //     vx = vx * 0.98;
-        //     vy = vy * 0.98;
-            
-        //     xlast = x;
-        //     ylast = y;
-
-        //     y = parseInt(y + vy / 400);
-        //     x = parseInt(x + vx / 400);
-            
-        //     boundingBoxCheck();
-            
-        //     sphere.style.top = y + "px";
-        //     sphere.style.left = x + "px";
-            
-        // }, 50);
     } 
 
-
-    // function boundingBoxCheck(){
-    //     if (x<0) { x = 0; vx = -vx; }
-    //     if (y<0) { y = 0; vy = -vy; }
-    //     if (x>document.documentElement.clientWidth-20) { x = document.documentElement.clientWidth-20; vx = -vx; }
-    //     if (y>document.documentElement.clientHeight-20) { y = document.documentElement.clientHeight-20; vy = -vy; }
-        
-    // }
-
-//end of ball stuff*****************************************
-
-    var scaleFactorx = 1;
-    var scaleFactory = 1;
-
-    var current = {x:1286/2, y:543/2};
-    var last = {x:1286/2, y:543/2};
-
     window.addEventListener('devicemotion', function(e){
-        last.x = x*scaleFactorx;
-        last.y = y*scaleFactory;    
-        current.x = xlast*scaleFactorx;
-        current.y = ylast*scaleFactory;
+        if(e.rotationRate.beta || e.rotationRate.gamma){        
+            last.x = x;
+            last.y = y;    
+            current.x = xlast;
+            current.y = ylast;
 
-        whiteboard.draw(last, current, color, true);
+            sphereMove.move(current.y, current.x);
+
+            whiteboard.draw(last, current, color, true);
+        }
     });
+
+    sphereMove.move = function (top, left) {
+        sphere.style.top = top + "px";
+        sphere.style.left = left + "px";
+        sphereMove.emit('move', top, left);
+    };
 
     whiteboard.draw = function (start, end, strokeColor, shouldBroadcast) {
 
