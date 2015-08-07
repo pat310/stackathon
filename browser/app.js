@@ -10,6 +10,10 @@ socket.on('connect', function () {
 		//when whiteboard is drawn upon, emit payload on socket to server
 		socket.emit('drawing', start, end, strokeColor);
 	});
+
+	window.sphereMove.on('move', function(top, left){
+		socket.emit('moving', top, left);
+	});
 	
 	var room = location.pathname.slice(1);
 	//emits the room you want to join
@@ -20,6 +24,11 @@ socket.on('connect', function () {
 		data.forEach(function(value){
 			window.whiteboard.draw(value.start, value.end, value.strokeColor, false);
 		});
+	});
+
+	socket.on('newMoving', function(top, left){
+		console.log("moving")
+		window.sphereMove.move(top, left);
 	});
 
 	socket.on('newDrawing', function(start, end, strokeColor){

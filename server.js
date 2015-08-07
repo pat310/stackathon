@@ -57,6 +57,11 @@ io.on('connection', function (socket) {
     	socket.broadcast.to(room).emit('newDrawing', start, end, strokeColor);
     });
 
+    
+    socket.on('moving', function(top, left){
+        socket.broadcast.to(room).emit('newMoving', top, left);
+    });
+
     //track when sockets disconnect 
     //the socket itself emits a 'disconnect' not the io
     socket.on('disconnect', function(){
