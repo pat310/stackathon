@@ -76,70 +76,103 @@ window.whiteboard = new window.EventEmitter();
 
 
 //ball stuff
-    var x = 0, y = 0,
+    var x = 1286/2, y = 543/2,
     vx = 0, vy = 0,
     ax = 0, ay = 0,
-    xlast = 0, ylast = 0;
+    xlast = 0, ylast = 0,
+    vxlast = 0, vylast = 0;
     
     var sphere = document.getElementById("sphere");
 
     if (window.DeviceMotionEvent !== undefined) {
 
-        window.ondevicemotion = function(e) {
-            axlast = ax;
-            aylast = ay;
-            ax = e.accelerationIncludingGravity.x * 5;
-            ay = e.accelerationIncludingGravity.y * 5;
-        };
-
-        setInterval( function() {
-            var landscapeOrientation = window.innerWidth/window.innerHeight > 1;
-            if ( landscapeOrientation) {
-                vx = vx + ay;
-                vy = vy + ax;
-            } else {
-                vy = vy - ay;
-                vx = vx + ax;
-            }
-            vx = vx * 0.98;
-            vy = vy * 0.98;
-            
+        window.ondeviceorientation = function(e){
             xlast = x;
             ylast = y;
 
-            y = parseInt(y + vy / 400);
-            x = parseInt(x + vx / 400);
-            
-            boundingBoxCheck();
-            
+
+            y = e.beta * (543) / 90;
+            x = e.gamma * (1286)/180 + (1286 / 2);
+
+            // if(e.alpha < 45){
+            //     x2 = -1 * e.alpha * (1286/2)/45 + 1286/2;
+            // }else if(e.alpha > 315){
+            //     x2 = -14.29 * e.alpha + 18.369;
+            // }
+
+            // x+=x2;
+
             sphere.style.top = y + "px";
             sphere.style.left = x + "px";
+        };
+
+        // window.ondevicemotion = function(e) {
+        //     axlast = ax;
+        //     aylast = ay;
+        //     ax = e.acceleration.x*1000;
+        //     ay = e.acceleration.z*1000;
+        //     var interval = e.interval;
+
+        //     vxlast = vx;
+        //     vylast = vy;
+        //     vx = vxlast + ax * interval * Math.pow(10, -3);
+        //     vy = vylast + ay * interval * Math.pow(10, -3);
+
+        //     xlast = x;
+        //     ylast = y;
+
+        //     x = (vxlast + vx) / 2 * interval * Math.pow(10, -3) + xlast;
+        //     y = -1 * (vylast + vy) / 2 * interval * Math.pow(10, -3) + ylast;
+        // };
+
+        // setInterval( function() {
+        //     var landscapeOrientation = window.innerWidth/window.innerHeight > 1;
+        //     if ( landscapeOrientation) {
+        //         vx = vx + ay;
+        //         vy = vy + ax;
+        //     } else {
+        //         vy = vy - ay;
+        //         vx = vx + ax;
+        //     }
+        //     vx = vx * 0.98;
+        //     vy = vy * 0.98;
             
-        }, 25);
+        //     xlast = x;
+        //     ylast = y;
+
+        //     y = parseInt(y + vy / 400);
+        //     x = parseInt(x + vx / 400);
+            
+        //     boundingBoxCheck();
+            
+        //     sphere.style.top = y + "px";
+        //     sphere.style.left = x + "px";
+            
+        // }, 50);
     } 
 
 
-    function boundingBoxCheck(){
-        if (x<0) { x = 0; vx = -vx; }
-        if (y<0) { y = 0; vy = -vy; }
-        if (x>document.documentElement.clientWidth-20) { x = document.documentElement.clientWidth-20; vx = -vx; }
-        if (y>document.documentElement.clientHeight-20) { y = document.documentElement.clientHeight-20; vy = -vy; }
+    // function boundingBoxCheck(){
+    //     if (x<0) { x = 0; vx = -vx; }
+    //     if (y<0) { y = 0; vy = -vy; }
+    //     if (x>document.documentElement.clientWidth-20) { x = document.documentElement.clientWidth-20; vx = -vx; }
+    //     if (y>document.documentElement.clientHeight-20) { y = document.documentElement.clientHeight-20; vy = -vy; }
         
-    }
+    // }
 
 //end of ball stuff*****************************************
 
-    var scaleFactorx = 4.5;
-    var scaleFactory = 1.5;
+    var scaleFactorx = 1;
+    var scaleFactory = 1;
 
-    var current = {x:0, y:0};
-    var last = {x:0, y:0};
+    var current = {x:1286/2, y:543/2};
+    var last = {x:1286/2, y:543/2};
 
     window.addEventListener('devicemotion', function(e){
         last.x = x*scaleFactorx;
         last.y = y*scaleFactory;    
-        current.x = parseInt(xlast)*scaleFactorx;
-        current.y = parseInt(ylast)*scaleFactory;
+        current.x = xlast*scaleFactorx;
+        current.y = ylast*scaleFactory;
 
         whiteboard.draw(last, current, color, true);
     });
