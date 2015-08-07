@@ -27,6 +27,7 @@ socket.on('connect', function () {
 	});
 
 	socket.on('newMoving', function(top, left){
+		console.log("moving")
 		window.sphereMove.move(top, left);
 	});
 

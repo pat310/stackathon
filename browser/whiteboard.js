@@ -53,6 +53,7 @@ window.sphereMove = new window.EventEmitter();
     var drawing = false;
 
     canvas.addEventListener('mousedown', function (e) {
+        console.log('mousedown')
         drawing = true;
         currentMousePosition.x = e.pageX - this.offsetLeft;
         currentMousePosition.y = e.pageY - this.offsetTop;
@@ -89,18 +90,19 @@ window.sphereMove = new window.EventEmitter();
     if (window.DeviceMotionEvent !== undefined) {
 
         window.ondeviceorientation = function(e){
-            if(e.beta || e.gamma){
+            if(Math.abs(e.beta) > 5 || Math.abs(e.gamma) > 5){
                 xlast = x;
                 ylast = y;
-                y = e.beta * (canvas.height) / 90;
+                y = -e.beta * (canvas.height) / 90 + canvas.height;
                 x = e.gamma * (canvas.width)/180 + (canvas.width / 2);
+                //x = e.alpha * (canvas.width)/180;
             }
         };
 
     } 
 
     window.addEventListener('devicemotion', function(e){
-        if(e.rotationRate.beta || e.rotationRate.gamma){        
+        if(Math.abs(e.rotationRate.beta) > 5 || Math.abs(e.rotationRate.gamma) > 5){        
             last.x = x;
             last.y = y;    
             current.x = xlast;
