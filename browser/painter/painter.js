@@ -35,12 +35,15 @@ colorElements.forEach(function (el) {
 // })
 
 // ball stuff
-window.canvasProperties.declareProperties = function(canvas){
-	console.log("running now", canvas);
+window.painterCanvas.declareProperties = function(canvas){
+	
 	var x = canvas.width/2, y = canvas.height/2, xlast = x, ylast = y;
 
 	var current = {x: x, y: y};
 	var last = {x: x, y: y};
+
+	console.log("running now", canvas, last, current, color);
+	// window.painterLocation.emit('PaintCoord', last, current, color);
 
 	if (window.DeviceMotionEvent !== undefined) {
 	    window.ondeviceorientation = function(e){
@@ -61,11 +64,9 @@ window.canvasProperties.declareProperties = function(canvas){
 	        last.y = y;    
 	        current.x = xlast;
 	        current.y = ylast;
+
+			window.painterLocation.emit('PaintCoord', last, current, color);
 	    }
 	});
 
-}
-
-properties.sendProp = function(start, end){
-	properties.emit('sendProp', start, end);
-}
+};

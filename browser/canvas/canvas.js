@@ -20,59 +20,59 @@
     var canvasCopy = {
     	width: canvas.width,
     	height: canvas.height
-    }
+    };
 
     canvasProperties.emit('canvasProps', canvasCopy);
 
-    var currentMousePosition = {
-        x: 0,
-        y: 0
-    };
+  //   var currentMousePosition = {
+  //       x: 0,
+  //       y: 0
+  //   };
 
-    var lastMousePosition = {
-        x: 0,
-        y: 0
-    };
+  //   var lastMousePosition = {
+  //       x: 0,
+  //       y: 0
+  //   };
 
-    var drawing = false;
+  //   var drawing = false;
 
-    canvas.addEventListener('properties', function(e){
-    	console.log("properties event", e);
-    })
+  //   canvas.addEventListener('properties', function(e){
+  //   	console.log("properties event", e);
+  //   })
 
-    canvas.addEventListener('mousedown', function (e) {
-        console.log('mousedown')
-        drawing = true;
-        currentMousePosition.x = e.pageX - this.offsetLeft;
-        currentMousePosition.y = e.pageY - this.offsetTop;
-    });
+  //   canvas.addEventListener('mousedown', function (e) {
+  //       console.log('mousedown')
+  //       drawing = true;
+  //       currentMousePosition.x = e.pageX - this.offsetLeft;
+  //       currentMousePosition.y = e.pageY - this.offsetTop;
+  //   });
 
-    canvas.addEventListener('mouseup', function () {
-        drawing = false;
-    });
+  //   canvas.addEventListener('mouseup', function () {
+  //       drawing = false;
+  //   });
 
-    canvas.addEventListener('mousemove', function (e) {
+  //   canvas.addEventListener('mousemove', function (e) {
 
-        if (!drawing) return;
+  //       if (!drawing) return;
 
-        lastMousePosition.x = currentMousePosition.x;
-        lastMousePosition.y = currentMousePosition.y;
+  //       lastMousePosition.x = currentMousePosition.x;
+  //       lastMousePosition.y = currentMousePosition.y;
 
-        currentMousePosition.x = e.pageX - this.offsetLeft;
-        currentMousePosition.y = e.pageY - this.offsetTop;
+  //       currentMousePosition.x = e.pageX - this.offsetLeft;
+  //       currentMousePosition.y = e.pageY - this.offsetTop;
 
-        whiteboard.draw(lastMousePosition, currentMousePosition, color, true);
+  //       whiteboard.draw(lastMousePosition, currentMousePosition, color, true);
 
-    });
+  //   });
 
-    sphereMove.move = function (top, left) {
-        sphere.style.top = top + "px";
-        sphere.style.left = left + "px";
-        sphereMove.emit('move', top, left);
-		};
+  //   sphereMove.move = function (top, left) {
+  //       sphere.style.top = top + "px";
+  //       sphere.style.left = left + "px";
+  //       sphereMove.emit('move', top, left);
+		// };
 
     whiteboard.draw = function (start, end, strokeColor, shouldBroadcast) {
-
+        console.log("whiteboard.draw in canvas.js", start, end, strokeColor, shouldBroadcast);
         // Draw the line between the start and end positions
         // that is colored with the given color.
         ctx.beginPath();

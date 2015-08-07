@@ -27,49 +27,54 @@ io.on('connection', function (socket) {
     console.log('A new client has connected!');
     console.log(socket.id);
 
-    //listen for room emitting
-    var room = null;
+ //    //listen for room emitting
+ //    var room = null;
 
-	//a namespace is like building multiple socket servers
-	//a room uses the same server but has multipple rooms
-	//listening for room emit
-    socket.on('joinRoom', function(roomName){
-    	room = roomName;
-    	socket.join(roomName);
-    	if(!saveData[roomName]){
-    		saveData[roomName] = [];
-    	}
-	    //on connection, emit current board to socket
-    	socket.emit('currentBoard', saveData[room]);
-    });
+	// //a namespace is like building multiple socket servers
+	// //a room uses the same server but has multipple rooms
+	// //listening for room emit
+ //    socket.on('joinRoom', function(roomName){
+ //    	room = roomName;
+ //    	socket.join(roomName);
+ //    	if(!saveData[roomName]){
+ //    		saveData[roomName] = [];
+ //    	}
+	//     //on connection, emit current board to socket
+ //    	socket.emit('currentBoard', saveData[room]);
+ //    });
 
-    socket.on('sendProp', function(start, end){
-        console.log("coordinates", start, end);
-        socket.broadcast.to(room).emit('properties', start, end)
-    });
+ //    socket.on('sendProp', function(start, end){
+ //        console.log("coordinates", start, end);
+ //        socket.broadcast.to(room).emit('properties', start, end)
+ //    });
 
     socket.on('sendCanvasProps', function(canvas){
         console.log("canvas emitting", canvas)
         socket.broadcast.emit('newCanvas', canvas);
-    })
-
-    //Track when user draws on board
-    socket.on('drawing', function(start, end, strokeColor){
-    	console.log("Socket ", socket.id, " as drawn ", start, end, strokeColor);
-    	//save data for persistence
-    	saveData[room].push({start: start, end: end, strokeColor: strokeColor});
-    
-    	//broadcast data out to sockets
-    	//io.sockets.emit("someoneElseDrew") would broadcast to all sockets including socket that drew
-    	//socket.broadcast - broadcasts the event to all sockets except the socket that drew
-    	//broadcasting to particular room
-    	socket.broadcast.to(room).emit('newDrawing', start, end, strokeColor);
     });
 
-    
-    socket.on('moving', function(top, left){
-        socket.broadcast.to(room).emit('newMoving', top, left);
+    socket.on('sendPaintCoord', function(last, current, strokeColor){
+        console.log("painter emitting", last, current, strokeColor);
+        socket.broadcast.emit('newPaintCoord', last, current, strokeColor);
     });
+
+    // //Track when user draws on board
+    // socket.on('drawing', function(start, end, strokeColor){
+    // 	console.log("Socket ", socket.id, " as drawn ", start, end, strokeColor);
+    // 	//save data for persistence
+    // 	saveData[room].push({start: start, end: end, strokeColor: strokeColor});
+    
+    // 	//broadcast data out to sockets
+    // 	//io.sockets.emit("someoneElseDrew") would broadcast to all sockets including socket that drew
+    // 	//socket.broadcast - broadcasts the event to all sockets except the socket that drew
+    // 	//broadcasting to particular room
+    // 	socket.broadcast.to(room).emit('newDrawing', start, end, strokeColor);
+    // });
+
+    
+    // socket.on('moving', function(top, left){
+    //     socket.broadcast.to(room).emit('newMoving', top, left);
+    // });
 
     //track when sockets disconnect 
     //the socket itself emits a 'disconnect' not the io
@@ -77,6 +82,8 @@ io.on('connection', function (socket) {
     	console.log("Socket ", socket.id, "disconnected :(");
     });
 });
+
+
 
 server.listen(1337, function () {
     console.log('The server is listening on port 1337!');
