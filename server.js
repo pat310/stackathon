@@ -48,8 +48,9 @@ io.on('connection', function (socket) {
         socket.broadcast.to(room).emit('properties', start, end)
     });
 
-    socket.on('canvasProps', function(canvas){
+    socket.on('sendCanvasProps', function(canvas){
         console.log("canvas emitting", canvas)
+        socket.broadcast.emit('newCanvas', canvas);
     })
 
     //Track when user draws on board

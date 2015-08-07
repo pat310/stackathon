@@ -21,38 +21,51 @@ colorElements.forEach(function (el) {
 
 });
 
+//window.canvasProperties.emit('retrieveCanvas');
+// var bool = false;
 
+// window.addEventListener('newCanvas1', function(e){
+// 	console.log("newCanvas event", e)
+// 	var canvas = {
+// 		width: e.width,
+// 		height: e.height
+// 	}
 
+// 	declareProperties();
+// })
 
 // ball stuff
-var x = canvas.width/2, y = canvas.height/2, xlast = x, ylast = y;
+window.canvasProperties.declareProperties = function(canvas){
+	console.log("running now", canvas);
+	var x = canvas.width/2, y = canvas.height/2, xlast = x, ylast = y;
 
-var current = {x: x, y: y};
-var last = {x: x, y: y};
+	var current = {x: x, y: y};
+	var last = {x: x, y: y};
 
-if (window.DeviceMotionEvent !== undefined) {
-    window.ondeviceorientation = function(e){
-        if(Math.abs(e.beta) > 5 || Math.abs(e.gamma) > 5){
-            xlast = x;
-            ylast = y;
-            y = -e.beta * (canvas.height) / 90 + canvas.height;
-            x = e.gamma * (canvas.width)/180 + (canvas.width / 2);
-            //x = e.alpha * (canvas.width)/180;
-        }
-    };
+	if (window.DeviceMotionEvent !== undefined) {
+	    window.ondeviceorientation = function(e){
+	        if(Math.abs(e.beta) > 5 || Math.abs(e.gamma) > 5){
+	            xlast = x;
+	            ylast = y;
+	            y = -e.beta * (canvas.height) / 90 + canvas.height;
+	            x = e.gamma * (canvas.width)/180 + (canvas.width / 2);
+	            //x = e.alpha * (canvas.width)/180;
+	        }
+	    };
 
-} 
+	} 
 
-window.addEventListener('devicemotion', function(e){
-    if(Math.abs(e.rotationRate.beta) > 5 || Math.abs(e.rotationRate.gamma) > 5){        
-        last.x = x;
-        last.y = y;    
-        current.x = xlast;
-        current.y = ylast;
-    }
-});
+	window.addEventListener('devicemotion', function(e){
+	    if(Math.abs(e.rotationRate.beta) > 5 || Math.abs(e.rotationRate.gamma) > 5){        
+	        last.x = x;
+	        last.y = y;    
+	        current.x = xlast;
+	        current.y = ylast;
+	    }
+	});
+
+}
 
 properties.sendProp = function(start, end){
 	properties.emit('sendProp', start, end);
 }
-

@@ -1,15 +1,11 @@
-window.canvasProperties = new window.EventEmitter();
-
 (function () {
     var canvas = document.querySelector('#paint');
     var sketch = document.querySelector('#sketch');
-	console.log("checking", canvas)
     var sketchStyle = getComputedStyle(sketch);
 
     var sphere = document.getElementById("sphere");
-    sphere.style.top = y;
-    sphere.style.left = x;
-
+/*    sphere.style.top = y;
+    sphere.style.left = x;*/
 
     canvas.width = parseInt(sketchStyle.getPropertyValue('width'));
     canvas.height = parseInt(sketchStyle.getPropertyValue('height'));
@@ -21,7 +17,12 @@ window.canvasProperties = new window.EventEmitter();
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
 
-    canvasProperties.emit('canvasProps', canvas);
+    var canvasCopy = {
+    	width: canvas.width,
+    	height: canvas.height
+    }
+
+    canvasProperties.emit('canvasProps', canvasCopy);
 
     var currentMousePosition = {
         x: 0,
