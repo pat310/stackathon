@@ -1,99 +1,92 @@
-app.controller('CanvasCtrl', function () {
-	window.whiteboard = new window.EventEmitter();
+window.canvasProperties = new window.EventEmitter();
 
-	(function () {
+(function () {
+    var canvas = document.querySelector('#paint');
+    var sketch = document.querySelector('#sketch');
+	console.log("checking", canvas)
+    var sketchStyle = getComputedStyle(sketch);
 
-	    // Ultimately, the color of our stroke;
-	    var color;
+    var sphere = document.getElementById("sphere");
+    sphere.style.top = y;
+    sphere.style.left = x;
 
-	    // The color selection elements on the DOM.
-	    var colorElements = [].slice.call(document.querySelectorAll('.marker'));
 
-	    colorElements.forEach(function (el) {
+    canvas.width = parseInt(sketchStyle.getPropertyValue('width'));
+    canvas.height = parseInt(sketchStyle.getPropertyValue('height'));
 
-	        // Set the background color of this element
-	        // to its id (purple, red, blue, etc).
-	        el.style.backgroundColor = el.id;
 
-	        // Attach a click handler that will set our color variable to
-	        // the elements id, remove the selected class from all colors,
-	        // and then add the selected class to the clicked color.
-	        el.addEventListener('click', function () {
-	            color = this.id;
-	            document.querySelector('.selected').classList.remove('selected');
-	            this.classList.add('selected');
-	        });
+    var ctx = canvas.getContext('2d');
 
-	    });
+    ctx.lineWidth = 5;
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
 
-	    var canvas = document.querySelector('#paint');
-	    var sketch = document.querySelector('#sketch');
-	    var sketchStyle = getComputedStyle(sketch);
+    canvasProperties.emit('canvasProps', canvas);
 
-	    canvas.width = parseInt(sketchStyle.getPropertyValue('width'));
-	    canvas.height = parseInt(sketchStyle.getPropertyValue('height'));
+    var currentMousePosition = {
+        x: 0,
+        y: 0
+    };
 
-	    var ctx = canvas.getContext('2d');
+    var lastMousePosition = {
+        x: 0,
+        y: 0
+    };
 
-	    ctx.lineWidth = 5;
-	    ctx.lineJoin = 'round';
-	    ctx.lineCap = 'round';
+    var drawing = false;
 
-	    var currentMousePosition = {
-	        x: 0,
-	        y: 0
-	    };
+    canvas.addEventListener('properties', function(e){
+    	console.log("properties event", e);
+    })
 
-	    var lastMousePosition = {
-	        x: 0,
-	        y: 0
-	    };
+    canvas.addEventListener('mousedown', function (e) {
+        console.log('mousedown')
+        drawing = true;
+        currentMousePosition.x = e.pageX - this.offsetLeft;
+        currentMousePosition.y = e.pageY - this.offsetTop;
+    });
 
-	    var drawing = false;
+    canvas.addEventListener('mouseup', function () {
+        drawing = false;
+    });
 
-	    canvas.addEventListener('mousedown', function (e) {
-	        console.log('mousedown')
-	        drawing = true;
-	        currentMousePosition.x = e.pageX - this.offsetLeft;
-	        currentMousePosition.y = e.pageY - this.offsetTop;
-	    });
+    canvas.addEventListener('mousemove', function (e) {
 
-	    canvas.addEventListener('mouseup', function () {
-	        drawing = false;
-	    });
+        if (!drawing) return;
 
-	    canvas.addEventListener('mousemove', function (e) {
+        lastMousePosition.x = currentMousePosition.x;
+        lastMousePosition.y = currentMousePosition.y;
 
-	        if (!drawing) return;
+        currentMousePosition.x = e.pageX - this.offsetLeft;
+        currentMousePosition.y = e.pageY - this.offsetTop;
 
-	        lastMousePosition.x = currentMousePosition.x;
-	        lastMousePosition.y = currentMousePosition.y;
+        whiteboard.draw(lastMousePosition, currentMousePosition, color, true);
 
-	        currentMousePosition.x = e.pageX - this.offsetLeft;
-	        currentMousePosition.y = e.pageY - this.offsetTop;
+    });
 
-	        whiteboard.draw(lastMousePosition, currentMousePosition, color, true);
+    sphereMove.move = function (top, left) {
+        sphere.style.top = top + "px";
+        sphere.style.left = left + "px";
+        sphereMove.emit('move', top, left);
+		};
 
-	    });
+    whiteboard.draw = function (start, end, strokeColor, shouldBroadcast) {
 
-	    whiteboard.draw = function (start, end, strokeColor, shouldBroadcast) {
+        // Draw the line between the start and end positions
+        // that is colored with the given color.
+        ctx.beginPath();
+        ctx.strokeStyle = strokeColor || 'black';
+        ctx.moveTo(start.x, start.y);
+        ctx.lineTo(end.x, end.y);
+        ctx.closePath();
+        ctx.stroke();
 
-	        // Draw the line between the start and end positions
-	        // that is colored with the given color.
-	        ctx.beginPath();
-	        ctx.strokeStyle = strokeColor || 'black';
-	        ctx.moveTo(start.x, start.y);
-	        ctx.lineTo(end.x, end.y);
-	        ctx.closePath();
-	        ctx.stroke();
+        // If shouldBroadcast is truthy, we will emit a draw event to listeners
+        // with the start, end and color data.
+        if (shouldBroadcast) {
+            whiteboard.emit('draw', start, end, strokeColor);
+        }
+        
+    };
 
-	        // If shouldBroadcast is truthy, we will emit a draw event to listeners
-	        // with the start, end and color data.
-	        if (shouldBroadcast) {
-	            whiteboard.emit('draw', start, end, strokeColor);
-	        }
-	        
-	    };
-
-	})();
-})
+})();

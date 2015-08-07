@@ -43,6 +43,14 @@ io.on('connection', function (socket) {
     	socket.emit('currentBoard', saveData[room]);
     });
 
+    socket.on('sendProp', function(start, end){
+        console.log("coordinates", start, end);
+        socket.broadcast.to(room).emit('properties', start, end)
+    });
+
+    socket.on('canvasProps', function(canvas){
+        console.log("canvas emitting", canvas)
+    })
 
     //Track when user draws on board
     socket.on('drawing', function(start, end, strokeColor){
@@ -74,9 +82,30 @@ server.listen(1337, function () {
 });
 
 app.use(express.static(path.join(__dirname, 'browser')));
-app.use(express.static(path.join(__dirname, 'node_modules')));
+//app.use(express.static(path.join(__dirname, 'node_modules')));
 
 //wildcard that allows you to go to any url
-app.get('/*', function (req, res) {
+app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
+
+app.get('/computer', function (req, res) {
+    res.sendFile(path.join(__dirname, '/browser/canvas/canvas.html'));
+});
+
+app.get('/phone', function (req, res) {
+    res.sendFile(path.join(__dirname, '/browser/painter/painter.html'));
+});
+
+
+
+
+
+
+
+
+
+
+
+
+

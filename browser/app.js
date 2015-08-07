@@ -1,14 +1,9 @@
-app = angular.module('PaintApp', ['ui.router', 'ui.bootstrap']);
-
-app.config(function ($urlRouterProvider, $locationProvider) {
-    // This turns off hashbang urls (/#about) and changes it to something normal (/about)
-    $locationProvider.html5Mode(true);
-    // If we go to a URL that ui-router doesn't have registered, go to the "/" url.
-    $urlRouterProvider.otherwise('/');
-});
-
-
 // This object describes the URL of the page we're on
+window.whiteboard = new window.EventEmitter();
+window.sphereMove = new window.EventEmitter();
+window.properties = new window.EventEmitter();
+window.canvasProperties = new window.EventEmitter();
+
 var socket = io(window.location.origin);
 
 socket.on('connect', function () {

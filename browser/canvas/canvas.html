@@ -3,15 +3,19 @@
         <link href="style.css" type="text/css" rel="stylesheet" />
         <script src="socket.io/socket.io.js"></script>
         <script src="event-emitter.js"></script>
-        <script src="whiteboard.js"></script>
+        <!-- <script src="whiteboard.js"></script> -->
         <script src="app.js"></script>
         <script src="/canvas/canvas.js"></script>
         <script src="/painter/painter.js"></script>
-        <script src="/home/home.js"></script>
     </head>
     <body>
-        <a href="/computer">CANVAS</a>
-        <a href="/phone">PAINTER</a>
 
-    </body>
+
+		<div id="sketch">
+			<canvas id="paint"></canvas>
+		</div>
+
+		<div id="sphere"></div>
+	
+	</body>
 </html>
