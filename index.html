@@ -1,5 +1,10 @@
 <html>
-    <body>
+    <head>
+        <script src="/angular/angular.js"></script>
+        <script src="/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="/angular-bootstrap/ui-bootstrap.js"></script>
+    </head>
+    <body ng-app="PaintApp">
 
         <link href="style.css" type="text/css" rel="stylesheet" />
 
@@ -14,11 +19,11 @@
             <div class="marker" id="brown"></div>
         </div>
 
-        <div id="sketch">
+        <div id="sketch" ng-controller="CanvasCtrl">
             <canvas id="paint"></canvas>
         </div>
         
-        <div id="sphere"></div>
+        <div id="sphere" ng-controller="PhoneCtrl"></div>
 
         <script src="event-emitter.js"></script>
         <script src="whiteboard.js"></script>
