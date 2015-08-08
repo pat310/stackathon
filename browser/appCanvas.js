@@ -3,6 +3,7 @@ window.whiteboard = new window.EventEmitter();
 window.sphereMove = new window.EventEmitter();
 window.properties = new window.EventEmitter();
 window.canvasProperties = new window.EventEmitter();
+window.correctGuess = new window.EventEmitter();
 
 var socket = io(window.location.origin);
 
@@ -22,6 +23,10 @@ socket.on('connect', function(){
 		if(!toStart) window.sphereMove.move(start, end, strokeColor, brushWidth)
 		else window.whiteboard.draw(start, end, strokeColor, brushWidth, true);
 	});
+
+	socket.on('newCorrectGuess', function(guess, user){
+		window.correctGuess.display(guess, user);
+	})
 });
 
 // socket.on('connect', function () {
