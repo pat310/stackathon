@@ -37,10 +37,17 @@ io.on('connection', function (socket) {
         socket.broadcast.emit('newPaintCoord', last, current, strokeColor, brushWidth, toStart);
     });
 
+    socket.on('sendSolution', function(solution){
+        console.log('emitting solution', solution);
+        var minutes = 2;
+        socket.emit('finalSolution', solution, minutes);
+    });
+
     socket.on('sendCorrectGuess', function(guess, user){
         console.log("emitting correct guess", guess, user);
         socket.broadcast.emit('newCorrectGuess', guess, user);
-    })
+    });
+
 
     //track when sockets disconnect 
     //the socket itself emits a 'disconnect' not the io
