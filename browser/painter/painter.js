@@ -1,6 +1,9 @@
 // Ultimately, the color of our stroke;
 var color;
 
+//set default brush width
+var brushWidth = 10;
+
 // The color selection elements on the DOM.
 var colorElements = [].slice.call(document.querySelectorAll('.marker'));
 
@@ -20,19 +23,6 @@ colorElements.forEach(function (el) {
     });
 
 });
-
-//window.canvasProperties.emit('retrieveCanvas');
-// var bool = false;
-
-// window.addEventListener('newCanvas1', function(e){
-// 	console.log("newCanvas event", e)
-// 	var canvas = {
-// 		width: e.width,
-// 		height: e.height
-// 	}
-
-// 	declareProperties();
-// })
 
 // ball stuff
 window.painterCanvas.declareProperties = function(canvas){
@@ -65,8 +55,38 @@ window.painterCanvas.declareProperties = function(canvas){
 	        current.x = xlast;
 	        current.y = ylast;
 
-			window.painterLocation.emit('PaintCoord', last, current, color);
+			window.painterLocation.emit('PaintCoord', last, current, color, brushWidth);
 	    }
 	});
 
 };
+
+//start & stop painting
+	//on click -> emit
+// window.addEventListener('')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
