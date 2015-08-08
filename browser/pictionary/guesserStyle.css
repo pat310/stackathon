@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'Finger Paint';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Finger Paint'), url('/finger-paint/FingerPaint-Regular.woff') format('woff');
+}
+
+#guesser{
+    padding-top: 40px;
+}
+
+#guesser h3{
+    text-align: center;
+    font-size: 40px;
+}
+
+h3{
+    text-align: center;
+    font-size: 40px;
+}
+
+#guesser > .hide-on-submit > h3{
+    text-align: center;
+    font-size: 40px;
+}
+
+#guess-input{
+    text-align: center;
+    border-radius: 3px;
+    border: 1px solid #B7B7B7;
+    width: 30%;
+    height: 2em;
+}
+
+.container-guesser{
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.button{
+    padding-bottom: 30px;
+}
+
+.hide-all{
+    display: none;
+}
+
+.name{
+    padding-bottom: 20px;
+    font-family: 'Finger Paint';
+
+}
+

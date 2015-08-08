@@ -19,6 +19,11 @@
 
     canvasProperties.emit('canvasProps', canvasCopy);
 
+    correctGuess.display = function(guess, user){
+      console.log(guess, user);
+      //say you win!
+    }
+
   //   var currentMousePosition = {
   //       x: 0,
   //       y: 0

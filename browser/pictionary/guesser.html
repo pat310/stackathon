@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <link href="/style.css" type="text/css" rel="stylesheet" />
+        <link href="/pictionary/guesserStyle.css" type="text/css" rel="stylesheet" />
+        <link href="/bootstrap/dist/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="guesser">
+            <div class="hide-all">
+                <h3 class="name"></h3>
+            </div>
+            <div class="hide-on-submit">
+                <h3>Enter Your Name</h3>
+                <div class="container-guesser"> 
+                    <input type="text" value="" class="user-input" id="guess-input"></input>
+                </div>
+                <div class="button">
+                    <input id="button" class="btn btn-primary user" type="button" value="Submit"></input>
+                </div>
+            </div>
+            <div class="hide-all">
+                <h3>Submit Your Guess</h3>
+                <div class="container-guesser"> 
+                    <input type="text" value="" id="guess-input"></input>
+                </div>
+                <div class="button">
+                    <input id="button" class="btn btn-primary guess" type="button" value="Submit"></input>
+                </div>
+            </div>
+        </div>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/event-emitter.js"></script>
+        <script src="/appGuesser.js"></script>
+        <script src="/pictionary/guesser.js"></script>
+        <script src="/jquery/dist/jquery.min.js"></script>
+	</body>
+</html>
