@@ -17,6 +17,8 @@ colorElements.forEach(function (el) {
         color = this.id;
         document.querySelector('.selected').classList.remove('selected');
         this.classList.add('selected');
+        document.querySelector('label').classList.remove('background')
+        document.querySelector('label').style.background = color;
     });
 
 });
