@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <link href="/style.css" type="text/css" rel="stylesheet" />
+        <link href="/pictionary/guesserStyle.css" type="text/css" rel="stylesheet" />
+        <link href="/bootstrap/dist/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+    </head>
+    <body>
+        <div id="guesser">
+            <h3>Submit Your Guess</h3>
+            <div class="container-guesser"> 
+                <input type="text" value="" id="guess-input"></input>
+            </div>
+            <div class="button">
+                <input id="button" class="btn btn-primary" type="button" value="Submit"></input>
+            </div>
+        </div>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/event-emitter.js"></script>
+        <!-- <script src="appCanvas.js"></script> -->
+	</body>
+</html>
