@@ -1,4 +1,4 @@
-window.whiteboard = new window.EventEmitter();
+/*window.whiteboard = new window.EventEmitter();
 
 window.sphereMove = new window.EventEmitter();
 
@@ -78,7 +78,7 @@ window.sphereMove = new window.EventEmitter();
     });
 
 
-//ball stuff
+/*//ball stuff
     var x = canvas.width/2, y = canvas.height/2, xlast = x, ylast = y;
     var sphere = document.getElementById("sphere");
     sphere.style.top = y;
@@ -118,7 +118,7 @@ window.sphereMove = new window.EventEmitter();
         sphere.style.top = top + "px";
         sphere.style.left = left + "px";
         sphereMove.emit('move', top, left);
-    };
+    };*/
 
     whiteboard.draw = function (start, end, strokeColor, shouldBroadcast) {
 
@@ -139,4 +139,4 @@ window.sphereMove = new window.EventEmitter();
         
     };
 
-})();
+})();*/
