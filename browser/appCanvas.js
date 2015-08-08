@@ -17,9 +17,10 @@ socket.on('connect', function(){
 
     socket.emit('sendCanvasProps', stored);
 
-	socket.on('newPaintCoord', function(start, end, strokeColor){
-		console.log('User is drawing');
-		window.whiteboard.draw(start, end, strokeColor, true);
+	socket.on('newPaintCoord', function(start, end, strokeColor, brushWidth){
+		console.log('User is drawing', start, end);
+		//window.sphereMove.move(start, end, strokeColor, brushWidth)
+		window.whiteboard.draw(start, end, strokeColor, brushWidth, true);
 	});  
 });
 
