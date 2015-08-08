@@ -14,7 +14,7 @@ canvas {
 }
 
 .marker {
-    width: 50%;
+    width: 25%;
     height: 100%;
     float: left;
 }
@@ -36,12 +36,33 @@ canvas {
     height:50px;
 }
 
+@media screen and (max-width: 770px){
+    .price-slider {
+        margin-bottom: -20px;
+    }
+    .button{
+        text-align: center;
+        padding-bottom: 25px;
+    }
+}
 
-body {
+.button{
+    text-align: center;
+}
+
+#button{
+    padding: 10px 30px;
+    font-size: 20px;
+    background-color: black; 
+    border-color: black;
+}
+
+
+/*body {
     padding-top: 50px;
     padding-bottom: 50px;
 }
-
+*/
 /*.price-box {
     margin: 0 auto;
     background: #E9E9E9;
