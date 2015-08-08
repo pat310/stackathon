@@ -1,3 +1,5 @@
+$(document).ready(function(){
+
 // Ultimately, the color of our stroke;
 var color;
 
@@ -22,8 +24,16 @@ colorElements.forEach(function (el) {
         this.classList.add('selected');
         document.querySelector('label').classList.remove('background')
         document.querySelector('label').style.background = color;
+        console.log(document.querySelector('label'))
     });
 
+});
+
+
+var brushWidth = 5;
+document.querySelector('#slider').addEventListener('mouseup', function(){
+	brushWidth = parseInt($(this).children().children().text());
+	console.log(brushWidth)
 });
 
 // ball stuff
@@ -66,6 +76,8 @@ window.painterCanvas.declareProperties = function(canvas){
 //start & stop painting
 	//on click -> emit
 // window.addEventListener('')
+
+})
 
 
 
