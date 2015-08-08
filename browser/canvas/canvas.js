@@ -2,20 +2,19 @@
     var canvas = document.querySelector('#paint');
     var sketch = document.querySelector('#sketch');
     var sketchStyle = getComputedStyle(sketch);
-
     var sphere = document.getElementById("sphere");
-/*    sphere.style.top = y;
-    sphere.style.left = x;*/
 
     canvas.width = parseInt(sketchStyle.getPropertyValue('width'));
     canvas.height = parseInt(sketchStyle.getPropertyValue('height'));
 
+/*    sphere.style.top = canvas.height/2;
+    sphere.style.left = canvas.width/2;*/
 
     var ctx = canvas.getContext('2d');
 
-    ctx.lineWidth = 5;
+/*    ctx.lineWidth = 5;
     ctx.lineJoin = 'round';
-    ctx.lineCap = 'round';
+    ctx.lineCap = 'round';*/
 
     var canvasCopy = {
     	width: canvas.width,
@@ -64,17 +63,34 @@
   //       whiteboard.draw(lastMousePosition, currentMousePosition, color, true);
 
   //   });
+    sphereMove.move = function (start, end, color, brushWidth) {
+        console.log("shereMove.move in canvas.js")
+        
+        ctx.moveTo(end.x, end.y);
+        
+        //set color of sphere
+        sphere.style.backgroundColor = color;
 
-  //   sphereMove.move = function (top, left) {
-  //       sphere.style.top = top + "px";
-  //       sphere.style.left = left + "px";
-  //       sphereMove.emit('move', top, left);
-		// };
+        //set width of sphere
+        sphere.style.width = brushWidth + 'px';
+        sphere.style.height = brushWidth + 'px';
+        sphere.style.borderRadius = brushWidth + 'px';
 
-    whiteboard.draw = function (start, end, strokeColor, shouldBroadcast) {
-        console.log("whiteboard.draw in canvas.js", start, end, strokeColor, shouldBroadcast);
+        //set location
+        sphere.style.top = (end.y - brushWidth/4) + "px";
+        sphere.style.left = (end.x - brushWidth/4) + "px";
+        //emit sphere move to listeners
+        sphereMove.emit('move', start, end, color, brushWidth);
+		};
+
+    whiteboard.draw = function (start, end, strokeColor, brushWidth, shouldBroadcast) {
+        console.log("whiteboard.draw in canvas.js", start, end, strokeColor, brushWidth, shouldBroadcast);
         // Draw the line between the start and end positions
         // that is colored with the given color.
+        ctx.lineWidth = brushWidth;
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+
         ctx.beginPath();
         ctx.strokeStyle = strokeColor || 'black';
         ctx.moveTo(start.x, start.y);
@@ -85,7 +101,7 @@
         // If shouldBroadcast is truthy, we will emit a draw event to listeners
         // with the start, end and color data.
         if (shouldBroadcast) {
-            whiteboard.emit('draw', start, end, strokeColor);
+            whiteboard.emit('draw', start, end, strokeColor, brushWidth);
         }
         
     };

@@ -1,5 +1,6 @@
 window.painterCanvas = new window.EventEmitter();
 window.painterLocation = new window.EventEmitter();
+window.painterStop = new window.EventEmitter();
 
 var socket = io(window.location.origin);
 
@@ -11,9 +12,9 @@ socket.on('connect', function (){
     	window.painterCanvas.declareProperties(canvas);
     });
 
-    window.painterLocation.on('PaintCoord', function (last, current, strokecolor) {
-    	console.log('paint coords in appPainter.js', last, current, strokecolor);
-    	socket.emit('sendPaintCoord', last, current, strokecolor);
+    window.painterLocation.on('PaintCoord', function (last, current, strokecolor, brushWidth) {
+    	console.log('paint coords in appPainter.js', last, current, strokecolor, brushWidth);
+    	socket.emit('sendPaintCoord', last, current, strokecolor, brushWidth);
     });
 
 });
