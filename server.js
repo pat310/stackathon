@@ -37,6 +37,12 @@ io.on('connection', function (socket) {
         socket.broadcast.emit('newPaintCoord', last, current, strokeColor, brushWidth, toStart);
     });
 
+    socket.on('sendSolution', function(solution){
+        console.log('emitting solution', solution);
+        var minutes = 2;
+        socket.emit('finalSolution', solution, minutes);
+    });
+
     //track when sockets disconnect 
     //the socket itself emits a 'disconnect' not the io
     socket.on('disconnect', function(){

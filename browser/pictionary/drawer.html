@@ -2,6 +2,30 @@
     <body>
         <link href="/style.css" type="text/css" rel="stylesheet" />
         <link href="/bootstrap/dist/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+        <link href="/pictionary/drawer.css" type="text/css" rel="stylesheet"/>
+
+
+        <div id="pictures">
+          <div class="picture" id="black"><div class="text">picture 1</div></div>
+          <div class="picture" id="purple"><div class="text">picture 2</div></div>
+          <div class="picture" id="#CC66FF"><div class="text">picture 3</div></div>
+          <div class="picture" id="#FF0066"><div class="text">picture 4</div></div>
+          <div class="picture" id="red"><div class="text">picture 5</div></div>
+          <div class="picture" id="blue"><div class="text">picture 6</div></div>
+          <div class="picture" id="#00FFFF"><div class="text">picture 7</div></div>
+          <div class="picture" id="#0099FF"><div class="text">picture 8</div></div>
+          <div class="picture" id="#00FFCC"><div class="text">picture 9</div></div>
+          <div class="picture" id="green"><div class="text">picture 10</div></div>
+          <div class="picture" id="#00FF00"><div class="text">picture 11</div></div>
+          <div class="picture" id="orange"><div class="text">picture 12</div></div>
+          <div class="picture" id="#FF9966"><div class="text">picture 13</div></div>
+          <div class="picture" id="yellow"><div class="text">picture 14</div></div>
+          <div class="picture" id="#FFFF99"><div class="text">picture 15</div></div>
+          <div class="picture" id="brown"><div class="text">picture 16</div></div>
+        </div>
+
+        <div class="allInfoHide">
+
 
         <div id="color-selector">
             <div class="marker selected" id="black"></div>
@@ -37,9 +61,15 @@
       <!-- </div> -->
     <div class="button">
       <input id="button" class="btn btn-primary" type="button" value="Start"></input>
+
+      <div class="clock">
+        120
+      </div>
     </div>
 
     </div>
+    </div>
+
         <script src="http://code.jquery.com/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
     <script>
@@ -268,7 +298,7 @@
         <script src="/socket.io/socket.io.js"></script>
         <script src="/appPainter.js"></script>
         <!-- <script src="/canvas/canvas.js"></script> -->
-        <!-- <script src="/painter/painter.js"></script> -->
+        <script src="/pictionary/drawer.js"></script>
 
     </body>
 

@@ -86,6 +86,8 @@ border:none !important;
     border-radius: 20px;
     width:3.5em;
     height: 40px;
+    text-shadow: #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px, #000 0px 0px 1px;
+
 }
 
 .ui-slider .ui-slider-handle {
