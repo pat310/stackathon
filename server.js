@@ -43,19 +43,14 @@ io.on('connection', function (socket) {
  //    	socket.emit('currentBoard', saveData[room]);
  //    });
 
- //    socket.on('sendProp', function(start, end){
- //        console.log("coordinates", start, end);
- //        socket.broadcast.to(room).emit('properties', start, end)
- //    });
-
     socket.on('sendCanvasProps', function(canvas){
         console.log("canvas emitting", canvas)
         socket.broadcast.emit('newCanvas', canvas);
     });
 
-    socket.on('sendPaintCoord', function(last, current, strokeColor, brushWidth){
-        console.log("painter emitting", last, current, strokeColor, brushWidth);
-        socket.broadcast.emit('newPaintCoord', last, current, strokeColor, brushWidth);
+    socket.on('sendPaintCoord', function(last, current, strokeColor, brushWidth, toStart){
+        console.log("painter emitting", last, current, strokeColor, brushWidth, toStart);
+        socket.broadcast.emit('newPaintCoord', last, current, strokeColor, brushWidth, toStart);
     });
 
     // //Track when user draws on board

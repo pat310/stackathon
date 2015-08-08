@@ -11,11 +11,7 @@
     sphere.style.left = canvas.width/2;*/
 
     var ctx = canvas.getContext('2d');
-
-/*    ctx.lineWidth = 5;
-    ctx.lineJoin = 'round';
-    ctx.lineCap = 'round';*/
-
+    
     var canvasCopy = {
     	width: canvas.width,
     	height: canvas.height
