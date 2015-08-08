@@ -246,10 +246,7 @@
         var $amount = slider == 1?val:$("#amount").val();
         var $duration = slider == 2?val:$("#duration").val();
 
-        /* commented
-        $amount = $( "#slider" ).slider( "value" );
-        $duration = $( "#slider2" ).slider( "value" );
-         */
+        if(!$amount) $amount = 1;
 
          $( "#amount" ).val($amount);
          $( "#amount-label" ).text($amount);

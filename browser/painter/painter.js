@@ -39,9 +39,7 @@ $(document).ready(function(){
 	        color = this.id;
 	        document.querySelector('.selected').classList.remove('selected');
 	        this.classList.add('selected');
-	        document.querySelector('label').classList.remove('background')
 	        document.querySelector('label').style.background = color;
-	        console.log(document.querySelector('label'))
 	    });
 
 	});
@@ -61,7 +59,7 @@ $(document).ready(function(){
 
 	document.querySelector('#slider').addEventListener('mouseup', function(){
 		brushWidth = parseInt($(this).children().children().text());
-		console.log(brushWidth)
+        document.querySelector('label').style.background = color;
 	});
 
 	// ball stuff
