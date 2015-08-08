@@ -26,6 +26,9 @@ colorElements.forEach(function (el) {
 
 });
 
+//default does not paint until button click
+var toStart = false;
+
 // ball stuff
 window.painterCanvas.declareProperties = function(canvas){
 	
@@ -56,16 +59,25 @@ window.painterCanvas.declareProperties = function(canvas){
 	        last.y = y;    
 	        current.x = xlast;
 	        current.y = ylast;
-
-			window.painterLocation.emit('PaintCoord', last, current, color, brushWidth);
+	        console.log("toStart", toStart)
+			window.painterLocation.emit('PaintCoord', last, current, color, brushWidth, toStart);
 	    }
 	});
 
 };
 
 //start & stop painting
-	//on click -> emit
-// window.addEventListener('')
+function startPaint(){
+	if(document.getElementById('button').value === "Start"){
+		document.getElementById('button').value = "Stop";
+		toStart = false;
+	} 
+	else{
+		document.getElementById('button').value = "Start";
+		toStart = true;
+	}
+	// window.paintAction.emit('StartPaint', toStart);
+}
 
 
 

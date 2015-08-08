@@ -21,7 +21,11 @@ socket.on('connect', function(){
 		console.log('User is drawing', start, end);
 		//window.sphereMove.move(start, end, strokeColor, brushWidth)
 		window.whiteboard.draw(start, end, strokeColor, brushWidth, true);
-	});  
+	});
+
+/*	socket.on('newPaintCoord', function(toStart){
+		//if(!toStart) window.sphereMove
+	}) */
 });
 
 // socket.on('connect', function () {
