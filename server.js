@@ -48,15 +48,10 @@ io.on('connection', function (socket) {
         socket.broadcast.emit('newCanvas', canvas);
     });
 
-    socket.on('sendPaintCoord', function(last, current, strokeColor, brushWidth){
-        console.log("painter emitting", last, current, strokeColor, brushWidth);
-        socket.broadcast.emit('newPaintCoord', last, current, strokeColor, brushWidth);
+    socket.on('sendPaintCoord', function(last, current, strokeColor, brushWidth, toStart){
+        console.log("painter emitting", last, current, strokeColor, brushWidth, toStart);
+        socket.broadcast.emit('newPaintCoord', last, current, strokeColor, brushWidth, toStart);
     });
-
-    socket.ong('sendPaintAction', function(toStart){
-        console.log("sending paint action")
-        socket.broadcast.emit('newPaintAction', toStart);
-    })
 
     // //Track when user draws on board
     // socket.on('drawing', function(start, end, strokeColor){

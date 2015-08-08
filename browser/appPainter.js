@@ -17,9 +17,4 @@ socket.on('connect', function (){
     	socket.emit('sendPaintCoord', last, current, strokecolor, brushWidth, toStart);
     });
 
-    // window.painterAction.on('StartPaint', function(toStart){
-    // 	console.log("start/stop painting", toStart);
-    // 	socket.emit('sendPaintAction', toStart);
-    // });
-
 });
