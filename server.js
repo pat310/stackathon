@@ -40,7 +40,7 @@ io.on('connection', function (socket) {
     socket.on('sendSolution', function(solution, category){
         console.log('emitting solution', solution, category);
         var minutes = 2;
-        socket.emit('finalSolution', solution, category, minutes);
+        socket.broadcast.emit('finalSolution', solution, category, minutes);
     });
 
     socket.on('sendCorrectGuess', function(guess, user){

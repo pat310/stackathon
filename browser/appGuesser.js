@@ -11,8 +11,9 @@ socket.on('connect', function (){
     	socket.emit('sendCorrectGuess', guess, user);
     });
 
-    socket.on('finalSolution', function(solution){
-    	window.getSolution.store(solution);
+    socket.on('finalSolution', function(solution, category, minutes){
+    	console.log('finalSolution', solution, category, minutes)
+    	window.getSolution.store(solution, category, minutes);
     })
 
 });
