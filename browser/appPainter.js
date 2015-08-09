@@ -22,9 +22,13 @@ socket.on('connect', function (){
     	socket.emit('sendSolution', solution, category);
     });
 
-    socket.on('finalSolution', function(solution, category, clock){
-    	console.log("finalSolution", clock)
-    	window.painterAction.startClock(clock);
+    socket.on('finalSolution', function(solution, category, seconds){
+    	console.log("finalSolution", seconds);
+    	window.painterAction.startClock(seconds);
+    });
+
+    socket.on('gameOver', function(solution){
+    	window.painterAction.gameOver();
     });
 
 });

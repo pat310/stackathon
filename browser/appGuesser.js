@@ -11,9 +11,13 @@ socket.on('connect', function (){
     	socket.emit('sendCorrectGuess', guess, user);
     });
 
-    socket.on('finalSolution', function(solution, category, minutes){
-    	console.log('finalSolution', solution, category, minutes)
-    	window.getSolution.store(solution, category, minutes);
-    })
+    socket.on('finalSolution', function(solution, category, seconds){
+    	console.log('finalSolution', solution, category, seconds);
+    	window.getSolution.store(solution, category, seconds);
+    });
+
+    socket.on('gameOver', function(solution){
+    	window.getSolution.gameOver(solution);
+    });
 
 });

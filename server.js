@@ -28,7 +28,7 @@ io.on('connection', function (socket) {
     console.log(socket.id);
 
     socket.on('sendCanvasProps', function(canvas){
-        console.log("canvas emitting", canvas)
+        console.log("canvas emitting", canvas);
         socket.broadcast.emit('newCanvas', canvas);
     });
 
@@ -39,8 +39,19 @@ io.on('connection', function (socket) {
 
     socket.on('sendSolution', function(solution, category){
         console.log('emitting solution', solution, category);
-        var minutes = 2;
-        socket.broadcast.emit('finalSolution', solution, category, minutes);
+        var seconds = 90;
+        var refreshClock = setInterval(function(){
+            console.log('seconds', seconds);
+            socket.broadcast.emit('finalSolution', solution, category, seconds);
+            socket.emit('finalSolution', solution, category, seconds);
+
+            if(seconds <=0){
+                socket.emit('gameOver', solution);
+                socket.broadcast.emit('gameOver', solution);
+                clearInterval(refreshClock);
+            }
+            seconds--;
+        }, 1000);
     });
 
     socket.on('sendCorrectGuess', function(guess, user){
