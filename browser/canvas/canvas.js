@@ -21,7 +21,7 @@
 
     correctGuess.display = function(guess, user){
       console.log(guess, user);
-      //say you win!
+      $('.winner').append('<h3>'+user+' Wins, the answer was: ' + guess + '</h3>');
     }
 
   //   var currentMousePosition = {
