@@ -37,10 +37,10 @@ io.on('connection', function (socket) {
         socket.broadcast.emit('newPaintCoord', last, current, strokeColor, brushWidth, toStart);
     });
 
-    socket.on('sendSolution', function(solution){
-        console.log('emitting solution', solution);
+    socket.on('sendSolution', function(solution, category){
+        console.log('emitting solution', solution, category);
         var minutes = 2;
-        socket.emit('finalSolution', solution, minutes);
+        socket.emit('finalSolution', solution, category, minutes);
     });
 
     socket.on('sendCorrectGuess', function(guess, user){
