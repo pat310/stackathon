@@ -22,3 +22,7 @@
     height: 80px;
     background: white;
 }
+
+.allInfoHide {
+    display: none;
+}

@@ -59,6 +59,11 @@ io.on('connection', function (socket) {
         socket.broadcast.emit('newCorrectGuess', guess, user);
     });
 
+    socket.on('imageSelected', function(imageName){
+        console.log('imageSelected: ', imageName);
+        socket.broadcast.emit('newImageSelected', imageName);
+    });
+
 
     //track when sockets disconnect 
     //the socket itself emits a 'disconnect' not the io
@@ -98,10 +103,8 @@ app.get('/pictionary/guesser', function(req, res){
 });
 
 app.get('/coloringbook', function(req, res){
-    res.sendFile(path.join(__dirname, 'browser/coloringBook/book.html'));
+    res.sendFile(path.join(__dirname, 'browser/coloringBook/colorer.html'));
 });
-
-
 
 
 
