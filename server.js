@@ -97,6 +97,10 @@ app.get('/pictionary/guesser', function(req, res){
     res.sendFile(path.join(__dirname, '/browser/pictionary/guesser.html'));
 });
 
+app.get('/coloringbook', function(req, res){
+    res.sendFile(path.join(__dirname, 'browser/coloringBook/book.html'));
+});
+
 
 
 
