@@ -8,10 +8,15 @@
     src: url('/fonts/Besom-free-font.ttf');
 }
 
-/*.menu-box{
-	background-color: #CCFFFF;
+.background{
+	text-align: center;
 }
-*/
+
+.menu-box{
+	background-color: #CCFFFF;
+	width: 30%;
+}
+
 
 h3.title{
 	text-align: center;
