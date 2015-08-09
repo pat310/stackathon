@@ -1,19 +1,37 @@
 <html>
     <head>
+        <link href="/home/home.css" type="text/css" rel="stylesheet" />
         <link href="style.css" type="text/css" rel="stylesheet" />
+        <link href="/bootstrap/dist/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+        <script src="/jquery/dist/jquery.min.js"></script>
+        <script src="/bootstrap/dist/js/bootstrap.js"></script>
         <script src="socket.io/socket.io.js"></script>
         <script src="event-emitter.js"></script>
-        <script src="whiteboard.js"></script>
-        <script src="app.js"></script>
-        <script src="/canvas/canvas.js"></script>
-        <script src="/painter/painter.js"></script>
         <script src="/home/home.js"></script>
     </head>
     <body>
-        <a href="/computer">CANVAS</a>
-        <a href="/phone">PAINTER</a>
-        <a href="/pictionary/drawer">PICTIONARY DRAWER</a>
-        <a href="/pictionary/guesser">PICTIONARY GUESSER</a>
-
+        <div class="background">
+            <h3 class="title">Contemporary Art</h3>
+            <h2 class="menu">Menu</h2>
+            <div class="menu-box">
+            <p class="subtitle">Select Your Canvas:</p>
+                <!-- <ul> -->
+                <li><a href="/computer">BLANK CANVAS</a></li>
+                <li><a href="/coloringbook">COLORING BOOK</a></li>
+                <li class="pictionary">PICTIONARY</li>
+                    <div class="hide selections">
+                
+                    <li class="subtitle">Select Your Role:</li>
+                    <li><a href="/pictionary/drawer">PAINTER</a></li>
+                    <li><a href="/pictionary/guesser">GUESSER</a></li>
+                
+                    </div>
+                <!-- </ul> -->
+            <p class="subtitle">Get your brushes:</p>
+                <li><a href="/phone">PAINTER</a></li>
+            </div>
+            <p class="description">"I continue to get further away from the usual painter's tools such as easel, palette, brushes, etc." - Jackson Pollock</p>
+            <p class="description">"My painting does not come from the easel." - Jackson Pollock</p>
+        </div>
     </body>
 </html>

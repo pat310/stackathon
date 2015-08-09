@@ -1,21 +1,3 @@
-/*//default does not paint until button click
-var toStart = false;*/
-
-//start & stop painting
-/*function startPaint(){
-	if(document.getElementById('button').value === "Start"){
-		document.getElementById('button').value = "Stop";
-		toStart = false;
-		return toStart;
-	} 
-	else{
-		document.getElementById('button').value = "Start";
-		toStart = true;
-		return toStart;
-	}
-	// window.paintAction.emit('StartPaint', toStart);
-}*/
-
 $(document).ready(function(){
 	// Ultimately, the color of our stroke;
 	var color;
