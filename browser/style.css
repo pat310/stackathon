@@ -72,6 +72,31 @@ canvas {
     border-color: black;
 }
 
+#buttonwarn{
+    padding: 10px 30px;
+    font-size: 20px;
+    background-color: red; 
+    border-color: red;
+}
+
+#yes{
+    padding: 10px 30px;
+    font-size: 20px;
+    background-color: red; 
+    border-color: red;
+}
+
+#no{
+    padding: 10px 30px;
+    font-size: 20px;
+    background-color: black; 
+    border-color: black;
+}
+
+#sureclear {
+    display:none;
+}
+
 .winner{
     font-family: 'carioca';
 }

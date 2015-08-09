@@ -46,6 +46,19 @@ $(document).ready(function(){
 
 	});
 
+	document.getElementById('buttonwarn').addEventListener('click', function(){
+		$('#sureclear').css('display',"block");
+		document.getElementById('yes').addEventListener('click', function(){
+		console.log('clearing screen');
+			window.painterAction.emit('clear');
+			$('#sureclear').css('display','none');
+
+		});
+		document.getElementById('no').addEventListener('click', function(){
+			$('#sureclear').css('display','none');
+		});
+	});
+
 	var toStart;
 	var button = document.getElementById('button');
 	button.addEventListener('click', function(){

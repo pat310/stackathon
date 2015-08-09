@@ -1,6 +1,7 @@
 window.painterCanvas = new window.EventEmitter();
 window.painterLocation = new window.EventEmitter();
 window.painterAction = new window.EventEmitter();
+window.colorerAction = new window.EventEmitter();
 
 var socket = io(window.location.origin);
 
@@ -20,6 +21,15 @@ socket.on('connect', function (){
     window.painterAction.on('solution', function(solution, category){
     	console.log('solution in appPainter', solution, category);
     	socket.emit('sendSolution', solution, category);
+    });
+
+    window.painterAction.on('clear', function(){
+        socket.emit('clearScreen');
+    });
+
+    window.colorerAction.on('imageSelect', function(imageName){
+        console.log('imageSelect', imageName);
+        socket.emit('imageSelected', imageName);
     });
 
     socket.on('finalSolution', function(solution, category, seconds){

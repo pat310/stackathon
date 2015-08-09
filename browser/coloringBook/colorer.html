@@ -5,6 +5,13 @@
         <link href="/coloringBook/book.css" type="text/css" rel="stylesheet"/>
     </head>
     <body>
+
+        <div id="sureclear" class="button">
+          Are you sure you want to clear?
+          <input id="yes" class="btn btn-primary" type="button" value="Yes"></input>
+          <input id="no" class="btn btn-primary" type="button" value="No"></input>
+        </div>
+        
         <div id="images">
           <div class="image" id="blue"><div class="text">golden-retriever</div></div>
           <div class="image" id="purple"><div class="text">fullstack</div></div>
@@ -53,6 +60,7 @@
       <!-- </div> -->
     <div class="button">
       <input id="button" class="btn btn-primary" type="button" value="Start"></input>
+      <input id="buttonwarn" class="btn btn-primary" type="button" value="Clear"></input>
     </div>
 
     </div>
@@ -284,8 +292,6 @@
         <script src="/bootstrap/dist/js/bootstrap.js"></script>
         <script src="/event-emitter.js"></script>
         <script src="/socket.io/socket.io.js"></script>
-        <script src="/appColorer.js"></script>
-        <!-- <script src="/canvas/canvas.js"></script> -->
         <script src="/appPainter.js"></script>
         <script src="/coloringBook/colorer.js"></script>
 
