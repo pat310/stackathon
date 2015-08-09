@@ -1,27 +1,25 @@
-/*//default does not paint until button click
-var toStart = false;*/
-
-//start & stop painting
-/*function startPaint(){
-	if(document.getElementById('button').value === "Start"){
-		document.getElementById('button').value = "Stop";
-		toStart = false;
-		return toStart;
-	} 
-	else{
-		document.getElementById('button').value = "Start";
-		toStart = true;
-		return toStart;
-	}
-	// window.paintAction.emit('StartPaint', toStart);
-}*/
-
 $(document).ready(function(){
 
 	var solution = "";
+	var category = "";
+
+	var colorElements = [].slice.call(document.querySelectorAll('.category'));
+
+	colorElements.forEach(function (el) {
+
+	    el.style.backgroundColor = el.id;
+
+	    el.addEventListener('click', function () {
+	    	category = $(this).children().text();
+	    	document.querySelector('#categories').remove();
+	    	$(document.querySelector('.' + category)).removeClass(category);
+	    });
+
+	});
+
 
 	// The color selection elements on the DOM.
-	var colorElements = [].slice.call(document.querySelectorAll('.picture'));
+	colorElements = [].slice.call(document.querySelectorAll('.picture'));
 
 	colorElements.forEach(function (el) {
 
@@ -29,9 +27,9 @@ $(document).ready(function(){
 
 	    el.addEventListener('click', function () {
 	    	solution = $(this).children().text();
-	    	document.querySelector('#pictures').remove();
+	    	$(document.querySelectorAll('#pictures')).remove();
 	    	$(document.querySelector('.allinfoHide')).removeClass('allInfoHide');
-	    	window.painterAction.emit('solution', solution);
+	    	window.painterAction.emit('solution', solution, category);
 	    });
 
 	});
@@ -85,7 +83,7 @@ $(document).ready(function(){
 	window.painterAction.startClock = function (clock){
 		clock = clock*60;
 		var refreshClock = setInterval(function(){
-			$('.clock').text(clock);
+			$('.clock').text("Time left: " + clock);
 			clock = clock - 1;
 
 			if(clock <= 0){

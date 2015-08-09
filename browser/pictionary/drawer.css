@@ -32,3 +32,52 @@
 	float:right;
 	font-size:20px;
 }
+
+.animals {
+	display:none;
+}
+
+.shapes {
+	display:none;
+}
+
+.fullstack {
+	display:none;
+}
+
+.transportation {
+	display:none;
+}
+
+.food {
+	display:none;
+}
+
+.objects {
+	display:none;
+}
+
+.tv {
+	display:none;
+}
+
+.sports {
+	display:none;
+}
+
+#categories {
+    position: float;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 80px;
+    background: white;
+}
+
+.category {
+    width: 25%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    background: white;
+}
