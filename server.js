@@ -54,6 +54,10 @@ io.on('connection', function (socket) {
         }, 1000);
     });
 
+    socket.on('clearScreen', function(){
+        socket.broadcast.emit('screenCleared');
+    });
+
     socket.on('sendCorrectGuess', function(guess, user){
         console.log("emitting correct guess", guess, user);
         socket.broadcast.emit('newCorrectGuess', guess, user);

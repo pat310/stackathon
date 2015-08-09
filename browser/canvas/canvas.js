@@ -3,6 +3,7 @@
     var sketch = document.querySelector('#sketch');
     var sketchStyle = getComputedStyle(sketch);
     var sphere = document.getElementById("sphere");
+    var context = canvas.getContext("2d");
 
     canvas.width = parseInt(sketchStyle.getPropertyValue('width'));
     canvas.height = parseInt(sketchStyle.getPropertyValue('height'));
@@ -26,14 +27,17 @@
 
 
     window.colorBook.applyImage = function (imageName) {  
-      var canvas = document.getElementById("paint");
-      var context = canvas.getContext("2d");
       console.log('function is running', context)
       var image = new Image();
       image.src = "/coloringBook/" + imageName + ".jpg";
       image.onload = function() {
         context.drawImage(image, 0, 0);
       };
+    };
+
+    window.whiteboard.clear = function(){
+      console.log('clearing screen in window.whiteboard.clear')
+      context.clearRect(0, 0, canvas.width, canvas.height);
     };
 
   //   var currentMousePosition = {

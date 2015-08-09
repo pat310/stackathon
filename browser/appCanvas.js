@@ -30,6 +30,10 @@ socket.on('connect', function(){
     	window.colorBook.applyImage(imageName);
     });
 
+    socket.on('screenCleared', function(){
+    	window.whiteboard.clear();
+    });
+
 	socket.on('newCorrectGuess', function(guess, user){
 		window.correctGuess.display(guess, user);
 	});

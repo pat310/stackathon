@@ -4,6 +4,12 @@
         <link href="/bootstrap/dist/css/bootstrap.css" type="text/css" rel="stylesheet"/>
         <link href="/pictionary/drawer.css" type="text/css" rel="stylesheet"/>
 
+        <div id="sureclear" class="button">
+          Are you sure you want to clear?
+          <input id="yes" class="btn btn-primary" type="button" value="Yes"></input>
+          <input id="no" class="btn btn-primary" type="button" value="No"></input>
+        </div>
+        
         <div id="categories">
           <div class="category" id="blue"><div class="text">animals</div></div>
           <div class="category" id="purple"><div class="text">shapes</div></div>
@@ -113,7 +119,7 @@
     Solution
     </div>
       <input id="button" class="btn btn-primary" type="button" value="Start"></input>
-
+      <input id="buttonwarn" class="btn btn-primary" type="button" value="Clear"></input>
       <div class="clock">
         Time left: 120
       </div>
