@@ -2,7 +2,7 @@
     font-family: 'Finger Paint';
     font-style: normal;
     font-weight: normal;
-    src: local('Finger Paint'), url('/finger-paint/FingerPaint-Regular.woff') format('woff');
+    src: local('Finger Paint'), url('/fonts/finger-paint/FingerPaint-Regular.woff') format('woff');
 }
 
 #guesser{
