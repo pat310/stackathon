@@ -9,12 +9,15 @@
 }
 
 .background{
-	text-align: center;
+	margin: auto;
+	width: 100%;
 }
 
 .menu-box{
-	background-color: #CCFFFF;
-	width: 30%;
+	background-color: rgba(255, 251, 231, 0.6);
+	width: 25%;
+	padding-bottom: 15px;
+	clear: both;
 }
 
 
@@ -28,6 +31,7 @@ h3.title{
 	/*color: #FF0066;*/
 	text-transform: uppercase;
 	letter-spacing: 3px;
+	padding-bottom: 0px;
 }
 
 h2.menu{
@@ -52,16 +56,19 @@ li{
 	color: black;
 	font-weight: bold;
 	font-size: 16px;
+	letter-spacing: 1px;
 }
 li a{
 	color: black;
 	font-weight: bold;
 	font-size: 16px;
+	letter-spacing: 1px;
 }
 a{
 	color: black;
 	font-weight: bold;
 	font-size: 16px;
+	letter-spacing: 1px;
 }
 
 li:hover{
@@ -71,23 +78,25 @@ li:hover{
 
 .description{
 	font-family: 'proxima-nova','Helvetica Neue', Helvetica,Arial,sans-serif;
-	width: 30%;
+	width: 40%;
     /*font-family: Besom;*/
     float: left;
-    clear: both;
     color: black;
-    padding-top: 10px;
-    font-size: 16px;
+    font-size: 20px;
+    letter-spacing: 2px;
     font-weight: bold;
     text-align: center;
+    padding-top: 10px;
 }
 
 .subtitle{
 	/*font-family: 'proxima-nova','Helvetica Neue', Helvetica,Arial,sans-serif*/;
 	/*width: 40%;*/
+	letter-spacing: 1px;
 	font-family: Besom;
     color: black;
     font-size: 30px;
+    margin: 0px;
     font-weight: bold;
     text-align: center;
 }
