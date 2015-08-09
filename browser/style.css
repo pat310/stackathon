@@ -1,8 +1,16 @@
 @font-face {
-    font-family: 'carioca';
-    font-style: normal;
-    font-weight: normal;
-    src: local('CARIOCA_font'), url('/CARIOCA_font.svg') format('svg');
+    font-family: 'Finger Paint';
+    src: url('/fonts/finger-paint/FingerPaint-Regular.woff');
+}
+
+@font-face {
+    font-family: 'Aroly';
+    src: url('/fonts/Aroly-Font/Font/AROLY.ttf');
+}
+
+@font-face {
+    font-family: 'Besom';
+    src: url('/fonts/Besom-free-font.ttf');
 }
 
 canvas {

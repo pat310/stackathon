@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'Aroly';
+    src: url('/fonts/Aroly-Font/Font/AROLY.ttf');
+}
+
+@font-face {
+    font-family: 'Besom';
+    src: url('/fonts/Besom-free-font.ttf');
+}
+
+/*.menu-box{
+	background-color: #CCFFFF;
+}
+*/
+
+h3.title{
+	text-align: center;
+	/*font-family: Aroly;*/
+	font-family: Besom;
+	font-size: 150px;
+	color: black;
+	/*color: #3399FF;*/
+	/*color: #FF0066;*/
+	text-transform: uppercase;
+	letter-spacing: 3px;
+}
+
+h2.menu{
+	font-family: Besom;
+    color: black;
+    font-size: 100px;
+    text-align: center;
+}
+
+body{
+	padding: 25px 50px;
+	background-image: url("/home/paint-splatter.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+li{
+	text-align: center;
+	list-style: none;
+	text-decoration: none;
+	cursor: pointer;
+	color: black;
+	font-weight: bold;
+	font-size: 16px;
+}
+li a{
+	color: black;
+	font-weight: bold;
+	font-size: 16px;
+}
+a{
+	color: black;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+li:hover{
+	text-decoration: none;
+	/*color: ;*/
+}
+
+.description{
+	font-family: 'proxima-nova','Helvetica Neue', Helvetica,Arial,sans-serif;
+	width: 30%;
+    /*font-family: Besom;*/
+    float: left;
+    clear: both;
+    color: black;
+    padding-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.subtitle{
+	/*font-family: 'proxima-nova','Helvetica Neue', Helvetica,Arial,sans-serif*/;
+	/*width: 40%;*/
+	font-family: Besom;
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.hide{
+	display: none;
+}
+
+.pictionary > .subtitle{
+	padding-top: 0px;
+}
