@@ -4,6 +4,7 @@ window.sphereMove = new window.EventEmitter();
 window.properties = new window.EventEmitter();
 window.canvasProperties = new window.EventEmitter();
 window.correctGuess = new window.EventEmitter();
+window.colorBook = new window.EventEmitter();
 
 var socket = io(window.location.origin);
 
@@ -24,9 +25,14 @@ socket.on('connect', function(){
 		else window.whiteboard.draw(start, end, strokeColor, brushWidth, true);
 	});
 
+	socket.on('newImageSelected', function(imageName){
+    	console.log('newImageSelected', imageName);
+    	window.colorBook.applyImage(imageName);
+    });
+
 	socket.on('newCorrectGuess', function(guess, user){
 		window.correctGuess.display(guess, user);
-	})
+	});
 });
 
 // socket.on('connect', function () {

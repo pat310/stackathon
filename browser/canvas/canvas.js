@@ -22,7 +22,19 @@
     correctGuess.display = function(guess, user){
       console.log(guess, user);
       $('.winner').append('<h3>'+user+' Wins, the answer was: ' + guess + '</h3>');
-    }
+    };
+
+
+    window.colorBook.applyImage = function (imageName) {  
+      var canvas = document.getElementById("paint");
+      var context = canvas.getContext("2d");
+      console.log('function is running', context)
+      var image = new Image();
+      image.src = "/coloringBook/" + imageName + ".jpg";
+      image.onload = function() {
+        context.drawImage(image, 0, 0);
+      };
+    };
 
   //   var currentMousePosition = {
   //       x: 0,
