@@ -29,6 +29,7 @@ $(document).ready(function(){
 	    	solution = $(this).children().text();
 	    	$(document.querySelectorAll('#pictures')).remove();
 	    	$(document.querySelector('.allinfoHide')).removeClass('allInfoHide');
+	    	$('.solution').text("You are drawing: " + solution);
 	    	window.painterAction.emit('solution', solution, category);
 	    });
 
@@ -81,15 +82,14 @@ $(document).ready(function(){
 	});
 
 	window.painterAction.startClock = function (clock){
-		clock = clock*60;
-		var refreshClock = setInterval(function(){
-			$('.clock').text("Time left: " + clock);
-			clock = clock - 1;
+		$('.clock').text("Time left: " + clock);
+	};
 
-			if(clock <= 0){
-				clearInterval(refreshClock);
-			}
-		}, 1000);
+	var gameOverFlag = false;
+	window.painterAction.gameOver = function(){
+		gameOverFlag = true;
+		$('.gameOver').css('display','none');
+		$('.gameOverFlag').text("Time is up");
 	};
 
 	window.painterCanvas.declareProperties = function(canvas){
@@ -104,7 +104,7 @@ $(document).ready(function(){
 
 		if (window.DeviceMotionEvent !== undefined) {
 		    window.ondeviceorientation = function(e){
-		        if(Math.abs(e.beta) > 5 || Math.abs(e.gamma) > 5){
+		        if((Math.abs(e.beta) > 5 || Math.abs(e.gamma) > 5) && !gameOverFlag){
 		            xlast = x;
 		            ylast = y;
 		            y = -e.beta * (canvas.height) / 90 + canvas.height;
@@ -115,7 +115,7 @@ $(document).ready(function(){
 
 		} 
 		window.addEventListener('devicemotion', function(e){
-		    if(Math.abs(e.rotationRate.beta) > 5 || Math.abs(e.rotationRate.gamma) > 5){        
+		    if((Math.abs(e.rotationRate.beta) > 5 || Math.abs(e.rotationRate.gamma) > 5) && !gameOverFlag){        
 		        last.x = x;
 		        last.y = y;    
 		        current.x = xlast;
