@@ -17,12 +17,12 @@ socket.on('connect', function (){
     	socket.emit('sendPaintCoord', last, current, strokecolor, brushWidth, toStart);
     });
 
-    window.painterAction.on('solution', function(solution){
-    	console.log('solution in appPainter', solution);
-    	socket.emit('sendSolution', solution);
+    window.painterAction.on('solution', function(solution, category){
+    	console.log('solution in appPainter', solution, category);
+    	socket.emit('sendSolution', solution, category);
     });
 
-    socket.on('finalSolution', function(solution, clock){
+    socket.on('finalSolution', function(solution, category, clock){
     	console.log("finalSolution", clock)
     	window.painterAction.startClock(clock);
     });
