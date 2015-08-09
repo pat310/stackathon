@@ -19,13 +19,15 @@ submitName.addEventListener('click', function(){
 
 button.addEventListener('click', function () {
 	//check if input equals answer (drawer to emit answer to server)
+	$('.incorrect').text('');
 	guess = document.getElementById('guess-input').value;
 	console.log("guess", guess);
 	if(guess === answer){
 		window.submitAnswer.emit('correctGuess', guess, user);
-		//say you win
+		$('.winner').append('<h3>You Win!</h3>')
 	} else{
 		document.getElementById('guess-input').value = "";
+		$('.incorrect').append('<h3>Guess Again!</h3>')
 	}
 })
 
