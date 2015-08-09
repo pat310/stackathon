@@ -1,11 +1,12 @@
 var submitName = document.querySelector('.user');
 var button = document.querySelector('.guess');
-var guess;
-var user;
-var answer;
+var guess, user, answer, category, totalTime;
 
-window.getSolution.store = function(solution){
+window.getSolution.store = function(solution, category, minutes){
 	answer = solution;
+	category = category;
+	totalTime = minutes;
+	console.log("getSolution", answer, category, totalTime);
 }
 
 submitName.addEventListener('click', function(){
@@ -22,7 +23,7 @@ button.addEventListener('click', function () {
 	$('.incorrect').text('');
 	guess = document.getElementById('guess-input').value;
 	console.log("guess", guess);
-	if(guess === answer){
+	if(guess.toLowerCase() === answer.toLowerCase()){
 		window.submitAnswer.emit('correctGuess', guess, user);
 		$('.winner').append('<h3>You Win!</h3>')
 	} else{
