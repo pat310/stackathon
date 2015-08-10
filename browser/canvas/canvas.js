@@ -8,9 +8,6 @@
     canvas.width = parseInt(sketchStyle.getPropertyValue('width'));
     canvas.height = parseInt(sketchStyle.getPropertyValue('height'));
 
-/*    sphere.style.top = canvas.height/2;
-    sphere.style.left = canvas.width/2;*/
-
     var ctx = canvas.getContext('2d');
     
     var canvasCopy = {
@@ -40,46 +37,6 @@
       context.clearRect(0, 0, canvas.width, canvas.height);
     };
 
-  //   var currentMousePosition = {
-  //       x: 0,
-  //       y: 0
-  //   };
-
-  //   var lastMousePosition = {
-  //       x: 0,
-  //       y: 0
-  //   };
-
-  //   var drawing = false;
-
-  //   canvas.addEventListener('properties', function(e){
-  //   	console.log("properties event", e);
-  //   })
-
-  //   canvas.addEventListener('mousedown', function (e) {
-  //       console.log('mousedown')
-  //       drawing = true;
-  //       currentMousePosition.x = e.pageX - this.offsetLeft;
-  //       currentMousePosition.y = e.pageY - this.offsetTop;
-  //   });
-
-  //   canvas.addEventListener('mouseup', function () {
-  //       drawing = false;
-  //   });
-
-  //   canvas.addEventListener('mousemove', function (e) {
-
-  //       if (!drawing) return;
-
-  //       lastMousePosition.x = currentMousePosition.x;
-  //       lastMousePosition.y = currentMousePosition.y;
-
-  //       currentMousePosition.x = e.pageX - this.offsetLeft;
-  //       currentMousePosition.y = e.pageY - this.offsetTop;
-
-  //       whiteboard.draw(lastMousePosition, currentMousePosition, color, true);
-
-  //   });
     sphereMove.move = function (start, end, color, brushWidth) {
         console.log("shereMove.move in canvas.js")
         
@@ -96,8 +53,6 @@
         //set location
         sphere.style.top = (end.y - brushWidth/4) + "px";
         sphere.style.left = (end.x - brushWidth/4) + "px";
-        //emit sphere move to listeners
-        sphereMove.emit('move', start, end, color, brushWidth);
 		};
 
     whiteboard.draw = function (start, end, strokeColor, brushWidth, shouldBroadcast) {
@@ -114,12 +69,6 @@
         ctx.lineTo(end.x, end.y);
         ctx.closePath();
         ctx.stroke();
-
-        // If shouldBroadcast is truthy, we will emit a draw event to listeners
-        // with the start, end and color data.
-        if (shouldBroadcast) {
-            whiteboard.emit('draw', start, end, strokeColor, brushWidth);
-        }
         
     };
 
