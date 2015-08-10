@@ -117,7 +117,7 @@ $(document).ready(function(){
 
 		if (window.DeviceMotionEvent !== undefined) {
 		    window.ondeviceorientation = function(e){
-		        if(e.beta || e.gamma) && !gameOverFlag){
+		        if((e.beta || e.gamma) && !gameOverFlag){
 		            xlast = x;
 		            ylast = y;
 		            y = -e.beta * (canvas.height) / 90 + canvas.height;
@@ -136,7 +136,7 @@ $(document).ready(function(){
 
 		} 
 		window.addEventListener('devicemotion', function(e){
-		    if(e.rotationRate.beta || e.rotationRate.gamma) && !gameOverFlag){        
+		    if((e.rotationRate.beta || e.rotationRate.gamma) && !gameOverFlag){        
 		        last.x = x;
 		        last.y = y;    
 		        current.x = xlast;
