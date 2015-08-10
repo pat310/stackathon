@@ -29,7 +29,6 @@ $(document).ready(function(){
 	document.getElementById('buttonwarn').addEventListener('click', function(){
 		$('#sureclear').css('display',"block");
 		document.getElementById('yes').addEventListener('click', function(){
-		console.log('clearing screen');
 			window.painterAction.emit('clear');
 			$('#sureclear').css('display','none');
 
@@ -64,9 +63,6 @@ $(document).ready(function(){
 
 		var current = {x: x, y: y};
 		var last = {x: x, y: y};
-
-		console.log("running now", canvas, last, current, color);
-		// window.painterLocation.emit('PaintCoord', last, current, color);
 
 		if (window.DeviceMotionEvent !== undefined) {
 		    window.ondeviceorientation = function(e){

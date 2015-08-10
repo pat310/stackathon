@@ -13,18 +13,11 @@ socket.on('connect', function (){
         window.painterCanvas.declareProperties(canvas);
     });
 
-    // socket.on('newCanvas', function(canvas){
-    // 	console.log('newCanvas in appPainter.js', canvas);
-    // 	// window.painterCanvas.declareProperties(canvas);
-    // });
-
     window.painterLocation.on('PaintCoord', function (last, current, strokecolor, brushWidth, toStart) {
-    	console.log('paint coords in appPainter.js', last, current, strokecolor, brushWidth, toStart);
     	socket.emit('sendPaintCoord', last, current, strokecolor, brushWidth, toStart);
     });
 
     window.painterAction.on('solution', function(solution, category){
-    	console.log('solution in appPainter', solution, category);
     	socket.emit('sendSolution', solution, category);
     });
 
@@ -33,12 +26,10 @@ socket.on('connect', function (){
     });
 
     window.colorerAction.on('imageSelect', function(imageName){
-        console.log('imageSelect', imageName);
         socket.emit('imageSelected', imageName);
     });
 
     socket.on('finalSolution', function(solution, category, seconds){
-    	console.log("finalSolution", seconds);
     	window.painterAction.startClock(seconds);
     });
 

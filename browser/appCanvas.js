@@ -20,7 +20,6 @@ socket.on('connect', function(){
     socket.emit('sendCanvasProps', stored);
 
 	socket.on('newPaintCoord', function(start, end, strokeColor, brushWidth, toStart){
-		console.log('User is drawing', start, end);
 		if(!toStart){
 			$('#sphere').css('visibility', "visible");
 			window.sphereMove.move(start, end, strokeColor, brushWidth)
@@ -32,7 +31,6 @@ socket.on('connect', function(){
 	});
 
 	socket.on('newImageSelected', function(imageName){
-    	console.log('newImageSelected', imageName);
     	window.colorBook.applyImage(imageName);
     });
 
