@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Besom';
+    src: url('/fonts/Besom-free-font.ttf');
+}
+
 .picture {
     width: 25%;
     height: 100%;
@@ -27,16 +32,16 @@
 }
 
 .clock {
-	background:black;
-	color:white;
 	float:right;
-	font-size:20px;
+	font-size:30px;
+    font-family: Besom;
+    color: #FF0066;
 }
 
 .solution {
-	background:black;
-	color:white;
-	font-size:20px;
+    font-family: Besom;
+    color: #3399FF;
+	font-size:30px;
 }
 
 .animals {

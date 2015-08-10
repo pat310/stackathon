@@ -23,7 +23,6 @@
 
     var colorBookBool = false;
     window.colorBook.applyImage = function (imageName) {  
-      console.log('function is running', ctx)
       colorBookBool = true;
       var image = new Image();
       image.src = "/coloringBook/" + imageName + ".jpg";
@@ -34,13 +33,10 @@
 
     window.whiteboard.clear = function(){
       colorBookBool = false;
-      console.log('clearing screen in window.whiteboard.clear')
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     };
 
-    sphereMove.move = function (start, end, color, brushWidth) {
-        console.log("shereMove.move in canvas.js")
-        
+    sphereMove.move = function (start, end, color, brushWidth) {  
         ctx.moveTo(end.x, end.y);
         
         //set color of sphere
@@ -66,7 +62,6 @@
     }
 
     whiteboard.draw = function (start, end, strokeColor, brushWidth, shouldBroadcast) {
-        console.log("whiteboard.draw in canvas.js", start, end, strokeColor, brushWidth, shouldBroadcast);
         // Draw the line between the start and end positions
         // that is colored with the given color.
         ctx.lineWidth = brushWidth;
@@ -79,7 +74,6 @@
           ctx.strokeStyle = strokeColor || 'black';
         }else{
           var rgbVals = hexToRgb(strokeColor || "#000000");
-          console.log("in here", strokeColor, rgbVals)
           ctx.strokeStyle = "rgba(" + rgbVals.r + "," + rgbVals.g + "," + rgbVals.b + ", 0.1)";
         }
         ctx.moveTo(start.x, start.y);
