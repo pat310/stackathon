@@ -28,7 +28,7 @@
       var image = new Image();
       image.src = "/coloringBook/" + imageName + ".jpg";
       image.onload = function() {
-        context.drawImage(image, 0, 0);
+        context.drawImage(image, canvas.width/2 - this.width/2, canvas.height/2-this.height/2);
       };
     };
 
