@@ -21,8 +21,14 @@ socket.on('connect', function(){
 
 	socket.on('newPaintCoord', function(start, end, strokeColor, brushWidth, toStart){
 		console.log('User is drawing', start, end);
-		if(!toStart) window.sphereMove.move(start, end, strokeColor, brushWidth)
-		else window.whiteboard.draw(start, end, strokeColor, brushWidth, true);
+		if(!toStart){
+			$('#sphere').css('visibility', "visible");
+			window.sphereMove.move(start, end, strokeColor, brushWidth)
+		}
+		else{
+			$('#sphere').css('visibility', 'hidden');
+			window.whiteboard.draw(start, end, strokeColor, brushWidth, true);
+		}
 	});
 
 	socket.on('newImageSelected', function(imageName){
