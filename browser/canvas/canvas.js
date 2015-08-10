@@ -17,7 +17,7 @@
     canvasProperties.emit('canvasProps', canvasCopy);
 
     correctGuess.display = function(guess, user){
-      console.log(guess, user);
+      window.whiteboard.clear();
       $('#winner').append('<h3>'+user+' Wins, the answer was: ' + guess + '</h3>');
     };
 
