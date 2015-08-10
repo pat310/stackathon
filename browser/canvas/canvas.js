@@ -78,7 +78,8 @@
         if(!colorBookBool){
           ctx.strokeStyle = strokeColor || 'black';
         }else{
-          var rgbVals = hexToRgb(strokeColor);
+          var rgbVals = hexToRgb(strokeColor || "#000000");
+          console.log("in here", strokeColor, rgbVals)
           ctx.strokeStyle = "rgba(" + rgbVals.r + "," + rgbVals.g + "," + rgbVals.b + ", 0.1)";
         }
         ctx.moveTo(start.x, start.y);
