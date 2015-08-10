@@ -3,7 +3,6 @@
     var sketch = document.querySelector('#sketch');
     var sketchStyle = getComputedStyle(sketch);
     var sphere = document.getElementById("sphere");
-    var context = canvas.getContext("2d");
 
     canvas.width = parseInt(sketchStyle.getPropertyValue('width'));
     canvas.height = parseInt(sketchStyle.getPropertyValue('height'));
@@ -22,19 +21,21 @@
       $('.winner').append('<h3>'+user+' Wins, the answer was: ' + guess + '</h3>');
     };
 
-
+    var colorBookBool = false;
     window.colorBook.applyImage = function (imageName) {  
-      console.log('function is running', context)
+      console.log('function is running', ctx)
+      colorBookBool = true;
       var image = new Image();
       image.src = "/coloringBook/" + imageName + ".jpg";
       image.onload = function() {
-        context.drawImage(image, canvas.width/2 - this.width/2, canvas.height/2-this.height/2);
+        ctx.drawImage(image, canvas.width/2 - this.width/2, canvas.height/2-this.height/2);
       };
     };
 
     window.whiteboard.clear = function(){
+      colorBookBool = false;
       console.log('clearing screen in window.whiteboard.clear')
-      context.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
     };
 
     sphereMove.move = function (start, end, color, brushWidth) {
@@ -55,6 +56,15 @@
         sphere.style.left = (end.x - brushWidth/4) + "px";
 		};
 
+    function hexToRgb(hex) {
+      var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16)
+      } : null;
+    }
+
     whiteboard.draw = function (start, end, strokeColor, brushWidth, shouldBroadcast) {
         console.log("whiteboard.draw in canvas.js", start, end, strokeColor, brushWidth, shouldBroadcast);
         // Draw the line between the start and end positions
@@ -64,7 +74,13 @@
         ctx.lineCap = 'round';
 
         ctx.beginPath();
-        ctx.strokeStyle = strokeColor || 'black';
+
+        if(!colorBookBool){
+          ctx.strokeStyle = strokeColor || 'black';
+        }else{
+          var rgbVals = hexToRgb(strokeColor);
+          ctx.strokeStyle = "rgba(" + rgbVals.r + "," + rgbVals.g + "," + rgbVals.b + ", 0.1)";
+        }
         ctx.moveTo(start.x, start.y);
         ctx.lineTo(end.x, end.y);
         ctx.closePath();
