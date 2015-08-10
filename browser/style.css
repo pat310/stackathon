@@ -90,6 +90,12 @@ canvas {
     font-size: 20px;
     background-color: red; 
     border-color: red;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.button-group{
+    padding: 10px;
 }
 
 #yes{
