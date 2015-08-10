@@ -18,7 +18,7 @@
 
     correctGuess.display = function(guess, user){
       console.log(guess, user);
-      $('.winner').append('<h3>'+user+' Wins, the answer was: ' + guess + '</h3>');
+      $('#winner').append('<h3>'+user+' Wins, the answer was: ' + guess + '</h3>');
     };
 
     var colorBookBool = false;

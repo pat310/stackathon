@@ -1,35 +1,87 @@
 @font-face {
     font-family: 'Finger Paint';
-    font-style: normal;
-    font-weight: normal;
-    src: local('Finger Paint'), url('/fonts/finger-paint/FingerPaint-Regular.woff') format('woff');
+    src: url('/fonts/finger-paint/FingerPaint-Regular.woff');
+}
+
+@font-face {
+    font-family: 'Besom';
+    src: url('/fonts/Besom-free-font.ttf');
+}
+
+body{
+    /*padding-top: 50px;*/
+    background-image: url("/pictionary/paintChunks.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+
+@media screen and (max-width: 736px){
+    #guesser{
+        padding-top: 50%;
+    }
 }
 
 #guesser{
-    padding-top: 40px;
+    padding-top: 100px;
 }
 
 #guesser h3{
+    margin: 0;
+    font-family: Besom;
     text-align: center;
-    font-size: 40px;
+    font-size: 100px;
+    padding: 0;
 }
 
-h3{
+.winner > h3{
+    margin: 0;
+    font-family: Besom;
+    padding-left: 20px;
+    font-size: 100px;
+    padding: 0;
+    color: #FF0066;
+    /*color: #73FCD6;*/
+}
+.incorrect > h3{
+    padding-left: 20px;
+    color: #3399FF;
+    margin: 0;
+    font-family: Besom;
+    font-size: 100px;
+    /*color: #FF0066*/;
+    /*color: #73FCD6;*/
+}
+
+#guesser h2{
+    margin: 0;
+    font-family: Besom;
     text-align: center;
-    font-size: 40px;
+    font-size: 60px;
+    text-shadow: 
+    -1px -1px 0 #A9A9A9,
+    1px -1px 0 #A9A9A9,
+    -1px 1px 0 #A9A9A9,
+    1px 1px 0 #A9A9A9;
+    padding-bottom: 15px;
 }
 
 #guesser > .hide-on-submit > h3{
+    padding-bottom: 20px;
+    font-family: Besom;
+    color: black;
+    position: relative;
     text-align: center;
-    font-size: 40px;
+    font-size: 100px;
 }
+
 
 #guess-input{
     text-align: center;
     border-radius: 3px;
     border: 1px solid #B7B7B7;
     width: 30%;
-    height: 2em;
+    height: 3em;
 }
 
 .container-guesser{
@@ -38,7 +90,10 @@ h3{
 }
 
 .button{
+    padding-top: 20px;
     padding-bottom: 30px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .hide-all{
@@ -46,7 +101,44 @@ h3{
 }
 
 .name{
-    padding-bottom: 20px;
-    font-family: 'Finger Paint';
+    padding-bottom: 40px;
+    font-family: Besom;
+}
+.clock{
+    padding-left: 20px; 
+    padding-top: 25px;
+    font-family: Besom;
+    font-size: 40px;
+    /*color: #6F5AFF;*/
+    color: #FF0066;
+    /*color: #FFC85C;*/
+    text-shadow:
+        -1px -1px 0 #5F5E5F,
+        1px -1px 0 #5F5E5F,
+        -1px 1px 0 #5F5E5F,
+        1px 1px 0 #5F5E5F;
+    /*color: #73FCD6;*/
+}
 
+.gameOverFlag{
+    text-align: center;
+    font-family: Besom;
+    font-size: 100px;
+    /*color: #6F5AFF;*/
+    /*color: #FF0066;*/
+    color: #FFC85C;
+    text-shadow:
+        -1px -1px 0 #5F5E5F,
+        1px -1px 0 #5F5E5F,
+        -1px 1px 0 #5F5E5F,
+        1px 1px 0 #5F5E5F;
+    /*color: #73FCD6;*/
+}
+
+.category{
+    padding-left: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 16px;
 }
