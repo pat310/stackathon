@@ -8,9 +8,6 @@
     canvas.width = parseInt(sketchStyle.getPropertyValue('width'));
     canvas.height = parseInt(sketchStyle.getPropertyValue('height'));
 
-/*    sphere.style.top = canvas.height/2;
-    sphere.style.left = canvas.width/2;*/
-
     var ctx = canvas.getContext('2d');
     
     var canvasCopy = {
@@ -22,7 +19,7 @@
 
     correctGuess.display = function(guess, user){
       console.log(guess, user);
-      $('.winner').append('<h3>'+user+' Wins, the answer was: ' + guess + '</h3>');
+      $('#winner').append('<h3>'+user+' Wins, the answer was: ' + guess + '</h3>');
     };
 
 
