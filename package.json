@@ -1,9 +1,9 @@
 {
-  "name": "World-Wide-Whiteboard",
+  "name": "Contempory Art",
   "version": "1.0.0",
-  "description": "socket.io workshop @ Fullstack Academy",
-  "main": "index.js",
-  "author": "instructors@fullstackacademy.com",
+  "description": "pictionary with iphones",
+  "main": "server.js",
+  "author": "cooperz",
   "scripts": {
     "start": "nodemon --watch server.js -e js,html server.js"
   },
