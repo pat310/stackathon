@@ -3,13 +3,9 @@
     var sketch = document.querySelector('#sketch');
     var sketchStyle = getComputedStyle(sketch);
     var sphere = document.getElementById("sphere");
-    var context = canvas.getContext("2d");
 
     canvas.width = parseInt(sketchStyle.getPropertyValue('width'));
     canvas.height = parseInt(sketchStyle.getPropertyValue('height'));
-
-/*    sphere.style.top = canvas.height/2;
-    sphere.style.left = canvas.width/2;*/
 
     var ctx = canvas.getContext('2d');
     
@@ -25,61 +21,23 @@
       $('.winner').append('<h3>'+user+' Wins, the answer was: ' + guess + '</h3>');
     };
 
-
+    var colorBookBool = false;
     window.colorBook.applyImage = function (imageName) {  
-      console.log('function is running', context)
+      console.log('function is running', ctx)
+      colorBookBool = true;
       var image = new Image();
       image.src = "/coloringBook/" + imageName + ".jpg";
       image.onload = function() {
-        context.drawImage(image, 0, 0);
+        ctx.drawImage(image, canvas.width/2 - this.width/2, canvas.height/2-this.height/2);
       };
     };
 
     window.whiteboard.clear = function(){
+      colorBookBool = false;
       console.log('clearing screen in window.whiteboard.clear')
-      context.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
     };
 
-  //   var currentMousePosition = {
-  //       x: 0,
-  //       y: 0
-  //   };
-
-  //   var lastMousePosition = {
-  //       x: 0,
-  //       y: 0
-  //   };
-
-  //   var drawing = false;
-
-  //   canvas.addEventListener('properties', function(e){
-  //   	console.log("properties event", e);
-  //   })
-
-  //   canvas.addEventListener('mousedown', function (e) {
-  //       console.log('mousedown')
-  //       drawing = true;
-  //       currentMousePosition.x = e.pageX - this.offsetLeft;
-  //       currentMousePosition.y = e.pageY - this.offsetTop;
-  //   });
-
-  //   canvas.addEventListener('mouseup', function () {
-  //       drawing = false;
-  //   });
-
-  //   canvas.addEventListener('mousemove', function (e) {
-
-  //       if (!drawing) return;
-
-  //       lastMousePosition.x = currentMousePosition.x;
-  //       lastMousePosition.y = currentMousePosition.y;
-
-  //       currentMousePosition.x = e.pageX - this.offsetLeft;
-  //       currentMousePosition.y = e.pageY - this.offsetTop;
-
-  //       whiteboard.draw(lastMousePosition, currentMousePosition, color, true);
-
-  //   });
     sphereMove.move = function (start, end, color, brushWidth) {
         console.log("shereMove.move in canvas.js")
         
@@ -96,9 +54,16 @@
         //set location
         sphere.style.top = (end.y - brushWidth/4) + "px";
         sphere.style.left = (end.x - brushWidth/4) + "px";
-        //emit sphere move to listeners
-        sphereMove.emit('move', start, end, color, brushWidth);
 		};
+
+    function hexToRgb(hex) {
+      var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16)
+      } : null;
+    }
 
     whiteboard.draw = function (start, end, strokeColor, brushWidth, shouldBroadcast) {
         console.log("whiteboard.draw in canvas.js", start, end, strokeColor, brushWidth, shouldBroadcast);
@@ -109,17 +74,18 @@
         ctx.lineCap = 'round';
 
         ctx.beginPath();
-        ctx.strokeStyle = strokeColor || 'black';
+
+        if(!colorBookBool){
+          ctx.strokeStyle = strokeColor || 'black';
+        }else{
+          var rgbVals = hexToRgb(strokeColor || "#000000");
+          console.log("in here", strokeColor, rgbVals)
+          ctx.strokeStyle = "rgba(" + rgbVals.r + "," + rgbVals.g + "," + rgbVals.b + ", 0.1)";
+        }
         ctx.moveTo(start.x, start.y);
         ctx.lineTo(end.x, end.y);
         ctx.closePath();
         ctx.stroke();
-
-        // If shouldBroadcast is truthy, we will emit a draw event to listeners
-        // with the start, end and color data.
-        if (shouldBroadcast) {
-            whiteboard.emit('draw', start, end, strokeColor, brushWidth);
-        }
         
     };
 

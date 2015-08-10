@@ -117,18 +117,26 @@ $(document).ready(function(){
 
 		if (window.DeviceMotionEvent !== undefined) {
 		    window.ondeviceorientation = function(e){
-		        if((Math.abs(e.beta) > 5 || Math.abs(e.gamma) > 5) && !gameOverFlag){
+		        if(e.beta || e.gamma) && !gameOverFlag){
 		            xlast = x;
 		            ylast = y;
 		            y = -e.beta * (canvas.height) / 90 + canvas.height;
-		            x = e.gamma * (canvas.width)/180 + (canvas.width / 2);
-		            //x = e.alpha * (canvas.width)/180;
+		            // x = e.gamma * (canvas.width)/180 + (canvas.width / 2);
+		            if(e.alpha <= 90){
+		            	x = -e.alpha * (canvas.width/2) / 90 + canvas.width/2; 
+		            }else if(e.alpha >= 270){
+		            	x = (canvas.width/2)/(270-360)*(e.alpha - 270) + canvas.width;
+		            }else if(e.alpha <= 180){
+		            	x = 0;
+		            }else{
+		            	x = canvas.width;
+		            }
 		        }
 		    };
 
 		} 
 		window.addEventListener('devicemotion', function(e){
-		    if((Math.abs(e.rotationRate.beta) > 5 || Math.abs(e.rotationRate.gamma) > 5) && !gameOverFlag){        
+		    if(e.rotationRate.beta || e.rotationRate.gamma) && !gameOverFlag){        
 		        last.x = x;
 		        last.y = y;    
 		        current.x = xlast;

@@ -21,8 +21,14 @@ socket.on('connect', function(){
 
 	socket.on('newPaintCoord', function(start, end, strokeColor, brushWidth, toStart){
 		console.log('User is drawing', start, end);
-		if(!toStart) window.sphereMove.move(start, end, strokeColor, brushWidth)
-		else window.whiteboard.draw(start, end, strokeColor, brushWidth, true);
+		if(!toStart){
+			$('#sphere').css('visibility', "visible");
+			window.sphereMove.move(start, end, strokeColor, brushWidth)
+		}
+		else{
+			$('#sphere').css('visibility', 'hidden');
+			window.whiteboard.draw(start, end, strokeColor, brushWidth, true);
+		}
 	});
 
 	socket.on('newImageSelected', function(imageName){
@@ -38,60 +44,3 @@ socket.on('connect', function(){
 		window.correctGuess.display(guess, user);
 	});
 });
-
-// socket.on('connect', function () {
-//     console.log('I have made a persistent two-way connection to the server!');
-// 	//on 'draw' event being emitted from whiteboard, console.log the payload of the event
-// 	window.whiteboard.on('draw', function(start, end, strokeColor){
-// 		// console.log(payload);
-// 		//when whiteboard is drawn upon, emit payload on socket to server
-// 		socket.emit('drawing', start, end, strokeColor);
-// 	});
-
-// 	window.sphereMove.on('move', function(top, left){
-// 		socket.emit('moving', top, left);
-// 	});
-// 	console.log("stored", stored);
-// 	socket.emit('sendCanvasProps', stored);
-// /*	window.canvasProperties.on('canvasProps', function(canvas){
-// 		console.log("canvas in app.js", canvas);
-// 		socket.emit('sendCanvasProps', stored)
-// 	})*/
-	
-// 	var room = location.pathname.slice(1);
-// 	//emits the room you want to join
-// 	socket.emit('joinRoom', room);
-
-// 	//draw current board on new connection
-// 	socket.on('currentBoard', function(data){
-// 		data.forEach(function(value){
-// 			window.whiteboard.draw(value.start, value.end, value.strokeColor, false);
-// 		});
-// 	});
-
-// 	socket.on('newCanvas', function(canvas){
-// 		console.log("newCanvas", canvas)
-// 		//canvasProperties.emit('newCanvas1', stored);
-// 	})
-
-// 	socket.on('retrieveCanvas', function(){
-// 		console.log("retrieveCanvas")
-// 		window.canvasProperties.declareProperties(stored);
-// 	})
-// /*	socket.on('newCanvas', function(){
-// 		console.log("retrieveCanvas")
-// 		window.canvasProperties.declareProperties(stored);
-// 	})*/
-
-// 	socket.on('newMoving', function(top, left){
-// 		console.log("moving")
-// 		window.sphereMove.move(top, left);
-// 	});
-
-// 	socket.on('newDrawing', function(start, end, strokeColor){
-// 		// window.whiteboard.draw(payload)
-// 		console.log('Other user is drawing');
-// 		window.whiteboard.draw(start, end, strokeColor, false);
-// 	});
-
-// });

@@ -19,7 +19,7 @@ var saveData = {};
 //NOTE: IMPORTANT to place below server.on('request', app) so that express 
 // application takes precedence over socket server
 var io = socketio(server);
-
+var canvasProps;
 //use socket server as an event emitter in order to listen for new connections
 io.on('connection', function (socket) {
     // This function receives the newly connected socket.
@@ -29,12 +29,17 @@ io.on('connection', function (socket) {
 
     socket.on('sendCanvasProps', function(canvas){
         console.log("canvas emitting", canvas);
-        socket.broadcast.emit('newCanvas', canvas);
+        canvasProps = canvas;
+        // socket.broadcast.emit('newCanvas', canvas);
     });
 
     socket.on('sendPaintCoord', function(last, current, strokeColor, brushWidth, toStart){
         console.log("painter emitting", last, current, strokeColor, brushWidth, toStart);
         socket.broadcast.emit('newPaintCoord', last, current, strokeColor, brushWidth, toStart);
+    });
+
+    socket.on('painterConnect', function(){
+        socket.emit('painterConnected', canvasProps);
     });
 
     socket.on('sendSolution', function(solution, category){
