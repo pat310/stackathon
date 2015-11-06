@@ -1,4 +1,4 @@
-# contemporaryArt
+# Contemporary Art
 
 Contemporary Art is an app that uses the phone's gryscope act as a paint brush.
 
