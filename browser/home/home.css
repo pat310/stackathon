@@ -9,6 +9,7 @@
 }
 
 .background{
+  top: 0;
 	margin: auto;
 	width: 100%;
 }
@@ -24,30 +25,31 @@
 h3.title{
 	text-align: center;
 	font-family: Besom;
-	font-size: 150px;
+	font-size: 100px;
 	color: black;
 	/*color: #3399FF;*/
 	/*color: #FF0066;*/
 	text-transform: uppercase;
 	letter-spacing: 3px;
 	padding-bottom: 0px;
-    text-shadow:
+/*    text-shadow:
     -1px -1px 0 #A9A9A9,
     1px -1px 0 #A9A9A9,
     -1px 1px 0 #A9A9A9,
-    1px 1px 0 #A9A9A9;
+    1px 1px 0 #A9A9A9;*/
 }
 
 h2.menu{
 	font-family: Besom;
-    color: black;
-    font-size: 100px;
-    text-align: center;
+  color: black;
+  font-size: 80px;
+  text-align: center;
 }
 
 body{
-	padding: 25px 50px;
-	background-image: url("/pictionary/Abstract-Paint-Brush.jpg");
+	/*padding: 25px 50px;*/
+  background-image: url('/home/splatter.png');
+	/*background-image: url("/pictionary/Abstract-Paint-Brush.jpg");*/
 	/*background-image: url("/home/paint-splatter.jpg");*/
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
@@ -90,7 +92,7 @@ li a:hover{
 .description{
 	font-family: 'proxima-nova','Helvetica Neue', Helvetica,Arial,sans-serif;
 	width: 30%;
-	padding-top: 200px;
+	/*padding-top: 200px;*/
 	padding-left: 50px;
     float: left;
     color: black;
